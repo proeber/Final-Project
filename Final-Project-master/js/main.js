@@ -66,7 +66,8 @@
     function onEachFeature(feature, layer) {
       layer.on({
           mouseover: highlight,
-          mouseout: resetHighlight
+          mouseout: resetHighlight,
+          click: zoomToFeature
       });
     }
 
@@ -79,6 +80,12 @@
         dashArray: '3',
         fillOpacity: 0.7
       };
+    }
+
+    function zoomToFeature(e){
+
+      map.fitBounds(e.target.getBounds());
+
     }
 
   })
