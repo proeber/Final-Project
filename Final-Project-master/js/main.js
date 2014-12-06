@@ -8,7 +8,7 @@
 
   	//new leaflet map
   	map= L.map('map',{
-  		center: [44.7, -90],
+      center: [44.7, -90],
   		zoom: 7,
   		minZoom: 7,
 
@@ -28,7 +28,6 @@
 
     function passChoropleth(choroplethData){
       choropleth = L.geoJson(choroplethData).addTo(map);
-
     }
 
     //highlight the county
