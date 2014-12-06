@@ -1,9 +1,9 @@
   $(document).ready(function(){
   		//global variables
   		var map,
-  		cities,
   		tiles,
       choropleth;
+      var counties = [];
 
 
   	//new leaflet map
@@ -14,6 +14,8 @@
 
   	});
     map.setMaxBounds([[49,-85],[42,-94]]);
+
+
   	//new leaflet tilelayer for background slippy tiles
   	tiles= L.tileLayer('http://{s}.acetate.geoiq.com/tiles/acetate/{z}/{x}/{y}.png',
   	{
@@ -24,20 +26,31 @@
     $.getJSON("data/WI_Counties_geojson.geojson").done(function(choroplethData){
         console.log(choroplethData);
         passChoropleth(choroplethData);
+        for( var i =0; i< 72; i++){
+          counties[i] = choroplethData.features[i];
+
+        }
+
+        geojson = L.geoJson(choroplethData, {
+            onEachFeature: onEachFeature,
+            style: style
+        }).addTo(map);
+
+        
     }).fail(function(){alert("There was a problem loading data")});
+
 
     function passChoropleth(choroplethData){
       choropleth = L.geoJson(choroplethData).addTo(map);
+      
     }
 
     //highlight the county
     function highlight(e){
-
       var layer = e.target;
-
       layer.setStyle({
         weight: 5,
-        color: '#666',
+        color: 'yellow',
         dashArray: '',
         fillOpacity: 0.7
       });
@@ -45,9 +58,27 @@
     }
 
     //reset highlight
-    function resetHighlight(e){
-      geojson.resetStyle(e.target);
+    function resetHighlight(e) {
+        geojson.resetStyle(e.target);
     }
 
+
+    function onEachFeature(feature, layer) {
+      layer.on({
+          mouseover: highlight,
+          mouseout: resetHighlight
+      });
+    }
+
+    function style(feature){
+      return{
+        fillColor: "red",
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+      };
+    }
 
   })
