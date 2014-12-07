@@ -2,10 +2,12 @@
 
 body {
     font-family: sans-serif;
+    margin:0;
+    padding:0;
 }
-h2 {
-    font-size: 1.2em;
+h1 {
     margin-top: 3px;
+    margin-left: 40px;
 }
 h2,div, span {
 	-webkit-touch-callout: none;
@@ -15,9 +17,13 @@ h2,div, span {
 	-ms-user-select: none;
 	user-select: none;
 }
+a{
+	padding:0;
+	margin-left: 0;
+}
 #wrapper {
     width: 960px;
-    margin: 15px auto;
+
 }
 #map {
 	height: 600px;

@@ -6,6 +6,10 @@
       var counties = [];
 
 
+   //make search menu sidebar
+   $('#search').sidr({name:'sidr'});   
+
+
   	//new leaflet map
   	map= L.map('map',{
       center: [44.7, -90],
