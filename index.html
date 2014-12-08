@@ -9,6 +9,7 @@
 	<!--links to leaflet style sheets -->
 	<link rel="stylesheet" href="css/leaflet.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel ="stylesheet" href="css/jquery.sidr.dark.css">
 	<!--[if IE]>
 		<link rel="stylesheet" href ="css/leaflet.ie.css
 	<!end iff-->
@@ -19,20 +20,231 @@
 
 
 	<!--html elements to hold page content, map-->
+
 	<div id="wrapper">
 		<h1>Title</h1>
 
-	
+		<a id="search" href="#sidr"><img src="data/images/search tab.png" height="75" width="55"></a>
 
-		<div id="map"></div>
-		
-		
+		<!--create side panel for searching-->
+		<div id ="sidr">
+			<h1><b>Search</b></h1>
+			<form>
+				County</br>
+				<select>
+					<option value="Adams">Adams</option>
+					<option value="Ashland">Ashland</option>
+					<option value ="Barron">Barron</option>
+					<option value="Bayfield">Bayfield</option>
+					<option value="Brown">Brown</option>
+					<option value ="Buffalo">Buffalo</option>
+					<option value ="Burnett">Burnett</option>
+					<option value ="Calumet">Calumet</option>
+					<option value ="Chippewa">Chippewa</option>
+					<option value ="Clark">Clark</option>
+					<option value="Columbia">Columbia</option>
+					<option value ="Crawford">Crawford</option>
+					<option value ="Dane">Dane</option>
+					<option value = "Dodge">Dodge</option>
+					<option value ="Door">Door</option>
+					<option value = "Douglas">Douglas</option>
+					<option value = "Dunn">Dunn</option>
+					<option value ="Eau Claire">Eau Claire</option>
+					<option value = "Florence">Florence</option>
+					<option value ="Fond du Lac">Fond du Lac</option>
+					<option value ="Forest">Forest</option>
+					<option value ="Grant">Grant</option>
+					<option value ="Green">Green</option>
+					<option value ="Green Lake">Green Lake</option>
+					<option value ="Iowa">Iowa</option>
+					<option value ="Iron">Iron</option>
+					<option value ="Jackson">Jackson</option>
+					<option value ="Jefferson">Jefferson</option>
+					<option value ="Juneau">Juneau</option>
+					<option value ="Kenosha">Kenosha</option>
+					<option value ="Kewaunee">Kewaunee</option>
+					<option value ="La Crosse">La Crosse</option>
+					<option value ="Lafayette">Lafayette</option>
+					<option value ="Langlade">Langlade</option>
+					<option value ="Lincoln">Lincoln</option>
+					<option value ="Manitowoc">Manitowoc</option>
+					<option value ="Marathon">Marathon</option>
+					<option value ="Marinette">Marinette</option>
+					<option value = "Marquette">Marquette</option>
+					<option value ="Menominee">Menominee</option>
+					<option value ="Milwaukee">Milwaukee</option>
+					<option value ="Monroe">Monroe</option>
+					<option value ="Oconto">Oconto</option>
+					<option value ="Oneida">Oneida</option>
+					<option value ="Outagamie">Outagamie</option>
+					<option value ="Ozaukee">Ozaukee</option>
+					<option value ="Pepin">Pepin</option>
+					<option value ="Pierce">Pierce</option>
+					<option value ="Polk">Polk</option>
+					<option value ="Portage">Portage</option>
+					<option value ="Price">Price</option>
+					<option value ="Racine">Racine</option>
+					<option value ="Richland">Richland</option>
+					<option value ="Rock">Rock</option>
+					<option value ="Rusk">Rusk</option>
+					<option value ="Sain Croix">Saint Croix</option>
+					<option value ="Sauk">Sauk</option>
+					<option value ="Sawyer">Sawyer</option>
+					<option value ="Shawno">Shawno</option>
+					<option value ="Sheboygan">Sheboygan</option>
+					<option value ="Taylor">Taylor</option>
+					<option value ="Trempealeau">Trempealeau</option>
+					<option value = "Vernon">Vernon</option>
+					<option value ="Vilas">Vilas</option>
+					<option value ="Walworth">Walworth</option>
+					<option value ="Washburn">Washburn</option>
+					<option value ="Washington">Washington</option>
+					<option value ="Waukesha">Waukesha</option>
+					<option value ="Waupaca">Waupaca</option>
+					<option value ="Waushara">Waushara</option>
+					<option value ="Winnebago">Winnebago</option>
+					<option value ="Wood">Wood</option>
+
+				</select>
+
+				</br></br></br>Data Type
+				<select>
+					<option>2010 Flood</option>
+					<option>contours</option>
+					<option>addresses</option>
+					<option>admin</option>
+					<option>administrative boundaries</option>
+					<option>agricultural</option>
+					<option>airports</option>
+					<option>aldermanic districts</option>
+					<option>alleys</option>
+					<option>annexations</option>
+					<option>archery/hunting sites</option>
+					<option>automated mapping</option>
+					<option>banks</option>
+					<option>bathymetry</option>
+					<option>bedrock</option>
+					<option>biking</option>
+					<option>boat landings</option>
+					<option>breaklines</option>
+					<option>bridges</option>
+					<option>buildings</option>
+					<option>bus routes</option>
+					<option>campgrounds</option>
+					<option>catch basin</option>
+					<option>cell towers</option>
+					<option>cemeteries</option>
+					<option>census</option>
+					<option>civil</option>
+					<option>comprehensive plan</option>
+					<option>easements</option>
+					<option>construction lines</option>
+					<option>control corners</option>
+					<option>county boundary</option>
+					<option>crime data</option>
+					<option>CSM</option>
+					<option>cultural/recreational featurs</option>
+					<option>dams</option>
+					<option>public lands</option>
+					<option>day care/ elderly facilities</option>
+					<option>plainimetric data</option>
+					<option>districts</option>
+					<option>DNR fire response</option>
+					<option>DNR lands</option>
+					<option>drainage</option>
+					<option>DRG</option>
+					<option>driveways</option>
+					<option>DTM</option>
+					<option>emergency</option>
+					<option>environmental</option>
+					<option>FEMA LOMC</option>
+					<option>floodplains</option>
+					<option>ferry crossing</option>
+					<option>hydrants</option>
+					<option>flood hazard</option>
+					<option>forests/forest programs</option>
+					<option>geodedic</option>
+					<option>geology</option>
+					<option>groundwater</option>
+					<option>healthcare/medical sites</option>
+					<option>highway signs</option>
+					<option>historic</option>
+					<option>hydro</option>
+					<option>impervious areas/pavement</option>
+					<option>intersections</option>
+					<option>jails</option>
+					<option>jurisdictional boundaries</option>
+					<option>land conservation</option>
+					<option>land cover</option>
+					<option>land use</option>
+					<option>landfill inventory</option>
+					<option>LESA</option>
+					<option>lidar</option>
+					<option>management areas</option>
+					<option>MCAMLIS topo/plainimetric data</option>
+					<option>MCD</option>
+					<option>mine/quarry areas</option>
+					<option>municipalities</option>
+					<option>natural areas</option>
+					<option>NEPA boundaries</option>
+					<option>orthophoto</option>
+					<option>ownership areas</option>
+					<option>park and ride</option>
+					<option>parks</option>
+					<option>place names</option>
+					<option>places of worship</option>
+					<option>plats</option>
+					<option>PLSS</option>
+					<option>point clouds</option>
+					<option>points of interest</option>
+					<option>polling/voting</option>
+					<option>railroads</option>
+					<option>recycling</option>
+					<option>reference</option>
+					<option>reservation boundaries</option>
+					<option>road signs and signals</option>
+					<option>roads/streets</option>
+					<option>ROW</option>
+					<option>schools</option>
+					<option>shelters</option>
+					<option>shoreland</option>
+					<option>slopes</option>
+					<option>soils</option>
+					<option>solid waste</option>
+					<option>storm and water management</option>
+					<option>subdivision</option>
+					<option>supervisory districts</option>
+					<option>tax parcels and assessment data</option>
+					<option>TAZ(traffic analysis zone)</option>
+					<option>telephone exchanges</option>
+					<option>timber harvest</option>
+					<option>town boundaries</option>
+					<option>town halls</option>
+					<option>traffic counts</option>
+					<option>transportation</option>
+					<option>unincorporated places</option>
+					<option>utilities</option>
+					<option>warning sirens</option>
+					<option>water table</option>
+					<option>water treatment</option>
+					<option>watersheds</option>
+					<option>wells</option>
+					<option>zip codes</option>
+					<option>zoning</option>
+
+
+				</select>
+			</form>
+		</div>
+
+		<div id="map" class= "map"></div>
+
 	</div>
 
 	<!--script links to jQuery and leaflet-->
-
 	<script src="js/jquery.js"></script>
 	<script src="js/leaflet.js"></script>
+	<script src="js/jquery.sidr.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<!--main script-->
 	
