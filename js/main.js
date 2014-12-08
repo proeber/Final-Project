@@ -43,6 +43,21 @@
         
     }).fail(function(){alert("There was a problem loading data")});
 
+    $( function() {
+      // Getting the input from the user using jQuery
+      $('input#search_button').click( function() {
+        //Storing the input values
+        var county = $('#county').val();
+        var type = $('#type').val();
+
+        parser(type);
+        // Insert code that has to do with data here
+        console.log(county);
+      });
+    });
+
+    
+
     parser();
 
     function passChoropleth(choroplethData){
@@ -93,11 +108,12 @@
 
     }
 
-    function parser()
+    function parser(type)
     {
+      var file = type + ".csv"
       // TODO: get input name and search for file
-      var file = "/data/csv/2010_floodDamage.csv";
-      Papa.parse(file, {
+      var path = "/data/csv/" + file;
+      Papa.parse(path, {
         download: true,
         delimiter: ',',
         complete: function(results) {
