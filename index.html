@@ -31,7 +31,7 @@
 			<h1><b>Search</b></h1>
 			<form>
 				County</br>
-				<select>
+				<select id="county">
 					<option value="Adams">Adams</option>
 					<option value="Ashland">Ashland</option>
 					<option value ="Barron">Barron</option>
@@ -108,7 +108,7 @@
 				</select>
 
 				</br></br></br>Data Type
-				<select>
+				<select id="type">
 					<option>2010 Flood</option>
 					<option>contours</option>
 					<option>addresses</option>
@@ -234,6 +234,7 @@
 
 
 				</select>
+				<input type='button' value="Search" id="search_button">
 			</form>
 		</div>
 
@@ -247,6 +248,7 @@
 	<script src="js/jquery.sidr.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<!--main script-->
+	<!-- Script for the csv parser -->
 	<script type="text/javascript" src="js/PapaParse/papaparse.min.js"></script>
 	
 </body>
