@@ -50,15 +50,12 @@
         var county = $('#county').val();
         var type = $('#type').val();
 
+        // This goes to the function at line 111 to parse the csv data using the user input
         parser(type);
         // Insert code that has to do with data here
         console.log(county);
       });
     });
-
-    
-
-    parser();
 
     function passChoropleth(choroplethData){
       choropleth = L.geoJson(choroplethData).addTo(map);
@@ -111,8 +108,8 @@
     function parser(type)
     {
       var file = type + ".csv"
-      // TODO: get input name and search for file
       var path = "/data/csv/" + file;
+      
       Papa.parse(path, {
         download: true,
         delimiter: ',',
