@@ -43,6 +43,7 @@
         
     }).fail(function(){alert("There was a problem loading data")});
 
+    parser();
 
     function passChoropleth(choroplethData){
       choropleth = L.geoJson(choroplethData).addTo(map);
@@ -90,6 +91,19 @@
 
       map.fitBounds(e.target.getBounds());
 
+    }
+
+    function parser()
+    {
+      // TODO: get input name and search for file
+      var file = "/data/csv/2010_floodDamage.csv";
+      Papa.parse(file, {
+        download: true,
+        delimiter: ',',
+        complete: function(results) {
+            console.log(results);
+        }
+    })
     }
 
   })
