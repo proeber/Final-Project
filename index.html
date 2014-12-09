@@ -24,11 +24,10 @@
 	<div id="wrapper">
 		<h1>Title</h1>
 
-		<a id="search" href="#sidr"><img src="data/images/search tab.png" height="75" width="55"></a>
-
+		
 		<!--create side panel for searching-->
-		<div id ="sidr">
-			<h1><b>Search</b></h1>
+		<div id = "search" class="search">
+			<h2><b>Search</b></h2>
 			<form>
 				County</br>
 				<select id="county">
@@ -108,7 +107,7 @@
 				</select>
 
 				<!-- Data type must be processed in lowercase, spaces changed to '_' -->
-				</br></br></br>Data Type
+				</br></br></br>Data Type</br>
 				<select id="type">
 					<option>2010 Flood</option> <!-- 2010Flood.csv -->
 					<option>addresses</option>
@@ -235,11 +234,13 @@
 
 
 				</select>
+			</br>
 				<input type='button' value="Search" id="search_button">
 			</form>
 		</div>
 
 		<div id="map" class= "map"></div>
+		<div id="data" class="data"> THis is where the data is placed</div>
 
 	</div>
 

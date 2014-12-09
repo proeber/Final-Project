@@ -6,9 +6,6 @@
       var counties = [];
 
 
-   //make search menu sidebar
-   $('#search').sidr({name:'sidr'});   
-
 
   	//new leaflet map
   	map= L.map('map',{
@@ -69,7 +66,7 @@
         weight: 5,
         color: 'yellow',
         dashArray: '',
-        fillOpacity: 0.7
+        fillOpacity: 1
       });
 
     }
@@ -84,7 +81,7 @@
       layer.on({
           mouseover: highlight,
           mouseout: resetHighlight,
-          click: zoomToFeature
+          dblclick: zoomToFeature
       });
     }
 
