@@ -47,10 +47,11 @@
         var county = $('#county').val();
         var type = $('#type').val();
 
+        // Formatting the data type string correctly
+        var correctedType = dataFormat(type);
         // This goes to the function at line 111 to parse the csv data using the user input
-        parser(type);
+        parser(correctedType);
         // Insert code that has to do with data here
-        console.log(county);
       });
     });
 
@@ -104,6 +105,7 @@
 
     function parser(type)
     {
+      // Getting the file type 
       var file = type + ".csv"
       var path = "/data/csv/" + file;
       
@@ -112,8 +114,48 @@
         delimiter: ',',
         complete: function(results) {
             console.log(results);
+            updateDropdown(results.data[0], results.data);
         }
-    })
+      })
     }
 
+    // Format the data type string name
+    function dataFormat(type)
+    {
+      // To lowercase
+      var lowerType = type.toLowerCase();
+      // Replacing 
+      var typeFormat = lowerType.replace(/ /g, "_");
+      return typeFormat;
+    }
+
+    // Updating the dropdown menus with the correct data from the csv files
+    function updateDropdown(years, data)
+    {
+      var bool = false;
+      console.log(data[1][9]);
+      $('#county').empty();
+      for(j = 1; j < data.length; j++)
+      {
+        bool = false;
+        for(k = 0; k < data[j].length; k++)
+        {
+          if(data[j][k] == "TRUE" && bool == false)
+          {
+            // Setting boolean to true when found TRUE in current row
+            bool = true;
+            var option = '';
+            option = '<option value="' + data[j][0] + '">' + data[j][0] + '</option>';
+            $('#county').append(option)
+            console.log(data[j][0]);
+          }
+        }
+      }
+      $('#year').empty();
+      var option = '';
+      for (i = 1; i < years.length; i++){
+         option += '<option value="'+ years[i] + '">' + years[i] + '</option>';
+      }
+      $('#year').append(option);
+    }
   })
