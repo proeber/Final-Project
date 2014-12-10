@@ -5,7 +5,7 @@
       choropleth;
       var counties = [];
 
-
+    $(".chosen-select").chosen();
 
   	//new leaflet map
   	map= L.map('map',{
