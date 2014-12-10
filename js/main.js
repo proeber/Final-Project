@@ -4,6 +4,8 @@
   		tiles,
       choropleth;
       var counties = [];
+      var countyName=[];
+
 
     $(".chosen-select").chosen();
 
@@ -27,10 +29,24 @@
     $.getJSON("data/WI_Counties_geojson.geojson").done(function(choroplethData){
         console.log(choroplethData);
         passChoropleth(choroplethData);
+
+        var county=[];
+
         for( var i =0; i< 72; i++){
           counties[i] = choroplethData.features[i];
-
+          county[i] = counties[i].properties;
         }
+        
+        var index =0;
+        for(var key in county){
+          for (var k in county[key])
+            if(k == "NAME"){
+             countyName[index] = county[key][k];
+
+            }
+            index++;
+        }
+        
 
         geojson = L.geoJson(choroplethData, {
             onEachFeature: onEachFeature,
@@ -52,6 +68,9 @@
         // This goes to the function at line 111 to parse the csv data using the user input
         parser(correctedType);
         // Insert code that has to do with data here
+        highlightSelection(county);
+
+
       });
     });
 
@@ -72,6 +91,32 @@
       });
 
     }
+//highlight the selection based on the county
+//not working yet but hopefully is on the right track
+  function highlightSelection(county){
+
+    var index=[];
+    var layer;
+    var x =0;
+
+    for(var i=0;i<countyName.length;i++){
+      if(countyName[i] == county ){
+        
+        index[x] =i;
+        x++
+      }
+    }
+    for(var i =0;i<index.length;i++){
+     layer = counties[index[i]].getBounds();
+      layer.setStyle({
+        weight:5,
+        color: 'yellow',
+        dashArray:'',
+        fillOpacity:1,
+        fillColor:'green'
+      });
+    }
+  }
 
     //reset highlight
     function resetHighlight(e) {
@@ -149,6 +194,8 @@
             option = '<option value="' + data[j][0] + '">' + data[j][0] + '</option>';
             $('#county').append(option)
             console.log(data[j][0]);
+            //call the highlight option for a selection from the dropdowns
+            highlightSelection(data[j][0]);
           }
         }
       }
