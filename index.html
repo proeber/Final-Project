@@ -30,7 +30,8 @@
 			<h2><b>Search</b></h2>
 			<form>
 				County</br>
-				<select id="county">
+				<select id="county" class="chosen-select">
+					<option></option>
 					<option value="Adams">Adams</option>
 					<option value="Ashland">Ashland</option>
 					<option value ="Barron">Barron</option>
@@ -108,7 +109,8 @@
 
 				<!-- Data type must be processed in lowercase, spaces changed to '_' -->
 				</br></br></br>Data Type</br>
-				<select id="type">
+				<select id="type" class = "chosen-select">
+					<option> </option>
 					<option>2010 Flood</option> <!-- 2010Flood.csv -->
 					<option>addresses</option>
 					<option>admin</option> <!-- admin.csv -->
@@ -234,15 +236,15 @@
 
 
 				</select>
-<<<<<<< Updated upstream
+
 			</br>
-=======
+
 				<br><br><br>Year
 				<select id="year">
 				</select>
 
 
->>>>>>> Stashed changes
+
 				<input type='button' value="Search" id="search_button">
 			</form>
 		</div>
@@ -255,7 +257,7 @@
 	<!--script links to jQuery and leaflet-->
 	<script src="js/jquery.js"></script>
 	<script src="js/leaflet.js"></script>
-	<script src="js/jquery.sidr.min.js"></script>
+	<script src ="js/chosen.jquery.js"  type="text/javascript"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<!--main script-->
 	<!-- Script for the csv parser -->

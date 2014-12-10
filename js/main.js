@@ -65,9 +65,10 @@
       var layer = e.target;
       layer.setStyle({
         weight: 5,
-        color: 'yellow',
+        color: 'black',
         dashArray: '',
-        fillOpacity: 1
+        fillOpacity: 1,
+        fillColor:'yellow'
       });
 
     }
