@@ -43,3 +43,8 @@ h2,div, span {
 	background-color:black;
 	color:white;
 }
+
+#year
+{
+	width: 100px;
+}
