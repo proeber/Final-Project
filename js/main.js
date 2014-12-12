@@ -1,15 +1,16 @@
-$(document).ready(function(){
+$(document).ready(function()
+{
 		//global variables
 		var map,
 		tiles,
     choropleth;
     var counties = [];
-    var countyName=[];
+    var countyName = [];
 
   $(".chosen-select").chosen();
 
 	//new leaflet map
-	map= L.map('map',{
+	map = L.map('map',{
     center: [44.7, -90],
 		zoom: 7,
 		minZoom: 7,
@@ -19,24 +20,30 @@ $(document).ready(function(){
 
 
 	//new leaflet tilelayer for background slippy tiles
-	tiles= L.tileLayer('http://{s}.acetate.geoiq.com/tiles/acetate/{z}/{x}/{y}.png',
+	tiles = L.tileLayer('http://{s}.acetate.geoiq.com/tiles/acetate/{z}/{x}/{y}.png',
 	{
 		attribution: 'Acetate tileset from GeoIQ Data from Wikipedia'
 	}).addTo(map);
 
   //retrieve choropleth data
   $.getJSON("data/WI_Counties_geojson.geojson").done(function(choroplethData){
-      console.log(choroplethData);
+
       passChoropleth(choroplethData);
 
-      var county=[];
+      var county = [];
 
-      for( var i =0; i< 72; i++){
+      for( var i = 0; i < 72; i++)
+      {
         counties[i] = choroplethData.features[i];
         county[i] = counties[i].properties;
+        if(counties[i].properties.NAME === "Bayfield")
+        {
+          //console.log(counties[i]);
+        }
       }
       
-      var index =0;
+      //console.log(county);
+      var index = 0;
       for(var key in county){
         for (var k in county[key])
           if(k == "NAME"){
@@ -46,13 +53,14 @@ $(document).ready(function(){
           index++;
       }
       
+      
 
       geojson = L.geoJson(choroplethData, {
           onEachFeature: onEachFeature,
           style: style
       }).addTo(map);
 
-      
+      console.log(geojson);
   }).fail(function(){alert("There was a problem loading data")});
 
   $( function() {
@@ -63,14 +71,11 @@ $(document).ready(function(){
       var type;
       $('#county_chosen').find('.chosen-single').each(function(){
       county = $(this).find('span').text();
-      console.log(county);
       })
       $('#type_chosen').find('.chosen-single').each(function(){
       type = $(this).find('span').text();
-      console.log(type);
       })
-      //var county = $("#county_chosen .chosen-results .active-result result-selected input").val();
-      //var type = $('#type_chosen').val();
+      
       console.log(county);
       // Formatting the data type string correctly
       var correctedType = dataFormat(type);
@@ -90,6 +95,7 @@ $(document).ready(function(){
 
   //highlight the county
   function highlight(e){
+    console.log(e.target);
     var layer = e.target;
     layer.setStyle({
       weight: 5,
@@ -102,30 +108,50 @@ $(document).ready(function(){
   }
 //highlight the selection based on the county
 //not working yet but hopefully is on the right track
-// function highlightSelection(county){
+function highlightSelection(county){
 
-//   var index=[];
-//   var layer;
-//   var x =0;
+  var index = [];
+  var layer;
+  var x = 0;
+  //var current = counties[i].properties.NAME;
 
-//   for(var i=0;i<countyName.length;i++){
-//     if(countyName[i] == county ){
+  console.log(county);
+
+  for(var i = 0; i < counties.length; i++)
+  {
+    if(current === county)
+    {
+        layer = counties[index[i]].getBounds();
+        layer.setStyle({
+          weight:5,
+          fill: 'yellow',
+          dashArray:'',
+          fillOpacity:1,
+          fillColor:'green'
+        });
+    }
+    
+  }
+  
+  // for(var i=0;i<countyName.length;i++){
+  //   if(countyName[i] == county ){
       
-//       index[x] =i;
-//       x++
-//     }
-//   }
-//   for(var i =0;i<index.length;i++){
-//    layer = counties[index[i]].getBounds();
-//     layer.setStyle({
-//       weight:5,
-//       color: 'yellow',
-//       dashArray:'',
-//       fillOpacity:1,
-//       fillColor:'green'
-//     });
-//   }
-// }
+  //     index[x] =i;
+  //     x++
+  //   }
+  // }
+  // console.log(counties);
+  // for(var i =0;i<index.length;i++){
+  //  layer = counties[index[i]].getBounds();
+  //   layer.setStyle({
+  //     weight:5,
+  //     color: 'yellow',
+  //     dashArray:'',
+  //     fillOpacity:1,
+  //     fillColor:'green'
+  //   });
+  // }
+}
 
   //reset highlight
   function resetHighlight(e) {
@@ -168,7 +194,6 @@ $(document).ready(function(){
       download: true,
       delimiter: ',',
       complete: function(results) {
-          console.log(results);
           updateDropdown(results.data[0], results.data);
       }
     })
@@ -200,12 +225,12 @@ $(document).ready(function(){
           bool = true;
           var option = '';
           option = '<option value="' + data[j][0] + '">' + data[j][0] + '</option>';
-          console.log(option);
           $('#county').append(option);
           $('#county').trigger('chosen:updated');
-          console.log(data[j][0]);
+          //console.log(data[j][0]);
           //call the highlight option for a selection from the dropdowns
-          //highlightSelection(data[j][0]);
+          console.log(data[j][0]);
+          highlightSelection(data[j][0]);
         }
       }
     }
