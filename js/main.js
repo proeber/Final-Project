@@ -5,6 +5,12 @@ $(document).ready(function()
 		tiles,
     choropleth;
     var counties = [];
+    var screenHeight;
+
+    screenHeight = screen.height;
+    console.log(screenHeight, screen.width);
+
+   // $(".container").css("height:"+ screenHeight);
 
   $(".chosen-select").chosen();
 
@@ -29,31 +35,6 @@ $(document).ready(function()
 
       passChoropleth(choroplethData);
 
-      var county = [];
-
-      //for( var i = 0; i < 72; i++)
-    //  {
-      //  counties[i] = choroplethData.features[i];
-        //county[i] = counties[i].properties;
-        //if(counties[i].properties.NAME === "Bayfield")
-        //{
-          //console.log(counties[i]);
-        //}
-     // }
-      
-      //console.log(county);
-   //   var index = 0;
-     // for(var key in county){
-       // for (var k in county[key])
-         // if(k == "NAME"){
-          // countyName[index] = county[key][k];
-
-          //}
-          //index++;
-      //}
-      
-      
-
       geojson = L.geoJson(choroplethData, {
           onEachFeature: onEachFeature,
           style: style
@@ -63,11 +44,11 @@ $(document).ready(function()
       var array = geojson._layers;
       console.log(array);
       for( key in array){
-        console.log(key,array[key].feature.properties.NAME)
+        
         var index = array[key].feature.properties.NAME;
         counties[index] = array[key];
       }
-      console.log(counties);
+
   }).fail(function(){alert("There was a problem loading data")});
 
   $( function() {
@@ -102,7 +83,7 @@ $(document).ready(function()
 
   //highlight the county
   function highlight(e){
-    console.log(e.target);
+    console.log(e.target.feature.properties.NAME);
     var layer = e.target;
     layer.setStyle({
       weight: 5,
@@ -117,18 +98,21 @@ $(document).ready(function()
 //not working yet but hopefully is on the right track
 function highlightSelection(county){
 
-  var index = [];
+  
   var layer;
   var x = 0;
   //var current = counties[i].properties.NAME;
 
-  console.log(county);
+  for(key in counties){
 
-  for(var i = 0; i < counties.length; i++)
-  {
-    if(current === county)
+    //console.log(key == county.trim(), key, county.trim());
+
+      if(key === county.trim() )
     {
-        layer = counties[index[i]].getBounds();
+      console.log("stuff");
+        layer = counties[key];
+        console.log(layer);
+
         layer.setStyle({
           weight:5,
           fill: 'yellow',
@@ -137,28 +121,11 @@ function highlightSelection(county){
           fillColor:'green'
         });
     }
-    
-  }
   
-  // for(var i=0;i<countyName.length;i++){
-  //   if(countyName[i] == county ){
-      
-  //     index[x] =i;
-  //     x++
-  //   }
-  // }
-  // console.log(counties);
-  // for(var i =0;i<index.length;i++){
-  //  layer = counties[index[i]].getBounds();
-  //   layer.setStyle({
-  //     weight:5,
-  //     color: 'yellow',
-  //     dashArray:'',
-  //     fillOpacity:1,
-  //     fillColor:'green'
-  //   });
-  // }
+  }
+    
 }
+
 
   //reset highlight
   function resetHighlight(e) {
