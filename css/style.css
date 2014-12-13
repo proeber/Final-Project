@@ -27,18 +27,14 @@ h2,div, span {
 #wrapper {
     width: 100%;
     height:100%;
-
 }
 #map {
 	height: 600px;
-    width: 60%;
-	margin-left: 20%;
-	float:center;
+    width: 100%;
 }
 #data{
-	width:20%;
+	width:100%;
 	height:100%;
-	margin-left:80%;
 	float:top;
 	background-color:black;
 	color:white;
