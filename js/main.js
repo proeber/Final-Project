@@ -5,7 +5,6 @@ $(document).ready(function()
 		tiles,
     choropleth;
     var counties = [];
-    var countyName = [];
 
   $(".chosen-select").chosen();
 
@@ -32,26 +31,26 @@ $(document).ready(function()
 
       var county = [];
 
-      for( var i = 0; i < 72; i++)
-      {
-        counties[i] = choroplethData.features[i];
-        county[i] = counties[i].properties;
-        if(counties[i].properties.NAME === "Bayfield")
-        {
+      //for( var i = 0; i < 72; i++)
+    //  {
+      //  counties[i] = choroplethData.features[i];
+        //county[i] = counties[i].properties;
+        //if(counties[i].properties.NAME === "Bayfield")
+        //{
           //console.log(counties[i]);
-        }
-      }
+        //}
+     // }
       
       //console.log(county);
-      var index = 0;
-      for(var key in county){
-        for (var k in county[key])
-          if(k == "NAME"){
-           countyName[index] = county[key][k];
+   //   var index = 0;
+     // for(var key in county){
+       // for (var k in county[key])
+         // if(k == "NAME"){
+          // countyName[index] = county[key][k];
 
-          }
-          index++;
-      }
+          //}
+          //index++;
+      //}
       
       
 
@@ -60,7 +59,15 @@ $(document).ready(function()
           style: style
       }).addTo(map);
 
-      console.log(geojson);
+      console.log(geojson._layers);
+      var array = geojson._layers;
+      console.log(array);
+      for( key in array){
+        console.log(key,array[key].feature.properties.NAME)
+        var index = array[key].feature.properties.NAME;
+        counties[index] = array[key];
+      }
+      console.log(counties);
   }).fail(function(){alert("There was a problem loading data")});
 
   $( function() {
