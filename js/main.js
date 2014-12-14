@@ -40,9 +40,7 @@ $(document).ready(function()
           style: style
       }).addTo(map);
 
-      console.log(geojson._layers);
       var array = geojson._layers;
-      console.log(array);
       for( key in array){
         
         var index = array[key].feature.properties.NAME;
@@ -84,7 +82,17 @@ $(document).ready(function()
   //highlight the county
   function highlight(e){
     console.log(e.target.feature.properties.NAME);
+
     var layer = e.target;
+
+    layer.bindPopup(layer.feature.properties.NAME);
+    layer.on('mouseover',function(e){
+      this.openPopup();
+    });
+    layer.on('mouseover',function(e){
+      this.closePopup();
+    })
+
     layer.setStyle({
       weight: 5,
       color: 'black',
@@ -109,16 +117,15 @@ function highlightSelection(county){
 
       if(key === county.trim() )
     {
-      console.log("stuff");
         layer = counties[key];
         console.log(layer);
 
         layer.setStyle({
           weight:5,
-          fill: 'yellow',
+          color: 'black',
           dashArray:'',
           fillOpacity:1,
-          fillColor:'green'
+          fillColor:'yellow'
         });
     }
   
