@@ -81,7 +81,6 @@ $(document).ready(function()
 
   //highlight the county
   function highlight(e){
-    console.log(e.target.feature.properties.NAME);
 
     var layer = e.target;
 
@@ -89,16 +88,15 @@ $(document).ready(function()
     layer.on('mouseover',function(e){
       this.openPopup();
     });
-    layer.on('mouseover',function(e){
+    layer.on('mouseout',function(e){
       this.closePopup();
-    })
+    });
 
     layer.setStyle({
       weight: 5,
       color: 'black',
       dashArray: '',
-      fillOpacity: 1,
-      fillColor:'yellow'
+      fillOpacity: 1
     });
 
   }
@@ -155,7 +153,7 @@ function highlightSelection(county){
       opacity: 1,
       color: 'white',
       dashArray: '3',
-      fillOpacity: 0.7
+      fillOpacity: 1
     };
   }
 
