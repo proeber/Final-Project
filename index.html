@@ -21,24 +21,249 @@
 <body>
 
 	<div class="page-header">
-		<h1>Robinson's map library search</h1>
-		<p class="lead">
+		<h1>Wisconsin Data Collections</h1>
+		<p class="lead">We have created this tool that makes it easier and faster for you to search through the Robinson Map Library Geospatial Archive</p>
 	</div>
 
 	<div class="container">
 		<div class="row">
-			<div class =
+			<div class="col-md-3">
+			</div>
+			<div class ="col-md-8">
+				<ul id="searchBox">
+					<li>
+						<!-- Data type must be processed in lowercase, spaces changed to '_' -->
+						Data Type</br>
+						<select id="type" class = "chosen-select">
+						
+							<option value=""></option>
+							<option>2010 Flood</option> <!-- 2010Flood.csv -->
+							<option>addresses</option>
+							<option>admin</option> <!-- admin.csv -->
+							<option>administrative boundaries</option> <!-- administrativeboundaries.csv -->
+							<option>agricultural</option> <!-- agricultural.csv -->
+							<option>airports</option> <!-- airports.csv -->
+							<option>aldermanic districts</option> <!-- aldermandistricts.csv -->
+							<option>alleys</option> <!-- alleys.csv -->
+							<option>annexations</option> <!-- annexations.csv -->
+							<option>archery and hunting sites</option> <!-- archery_and_hunting_sites.csv -->
+							<option>automated mapping</option> <!-- automated_mapping.csv -->
+							<option>banks</option> <!-- banks.csv -->
+							<option>bathymetry</option> <!-- bathymetry.csv -->
+							<option>bedrock</option> <!-- bedrock.csv -->
+							<option>biking</option> <!-- biking.csv -->
+							<option>boat landings</option> <!-- boat_landings.csv -->
+							<option>breaklines</option> <!-- breaklines.csv -->
+							<option>bridges</option> <!-- bridges.csv -->
+							<option>buildings</option> <!-- buildings.csv -->
+							<option>bus routes</option> <!-- bus_routes.csv -->
+							<option>campgrounds</option> <!-- campgrounds.csv -->
+							<option>catch basin</option> <!-- catch_basin.csv -->
+							<option>cell towers</option> <!-- cell_towers.csv -->
+							<option>cemeteries</option> <!-- cemeteries.csv -->
+							<option>census</option> <!-- census.csv -->
+							<option>civil</option> <!-- civil.csv -->
+							<option>comprehensive plan</option> <!-- comprehensive_plan.csv -->
+							<option>contours</option> <!-- contours.csv -->
+							<option>construction lines</option> <!-- construction_lines.csv -->
+							<option>control corners</option> <!-- control_corners.csv -->
+							<option>county boundary</option> <!-- county_boundary.csv -->
+							<option>crimes</option> <!-- crimes.csv -->
+							<option>CSM</option> <!-- csm.csv -->
+							<option>cultural and recreational features</option> <!-- cultural.csv -->
+							<option>dams</option> <!-- dams.csv -->
+							<option>day care and elderly facilities</option> <!-- day_care_and_elderly_facilities.csv -->
+							<option>districts</option> <!-- districts.csv -->
+							<option>DNR fire response</option> <!-- dnr_fire_response.csv -->
+							<option>DNR lands</option> <!-- dnr_lands.csv -->
+							<option>drainage</option> <!-- drainage.csv -->
+							<option>DRG</option> <!-- drg.csv -->
+							<option>driveways</option> <!-- driveways.csv -->
+							<option>DTM</option> <!-- dtm.csv -->
+							<option>easements</option> <!-- easements.csv -->
+							<option>emergency</option> <!-- emergency.csv -->
+							<option>environmental</option> <!-- environmental.csv -->
+							<option>FEMA LOMC</option> <!-- fema_lomc.csv -->
+							<option>ferry crossing</option> <!-- ferry_crossing.csv -->
+							<option>flood hazard</option> <!-- flood_hazard.csv -->
+							<option>floodplains</option> <!-- floodplains.csv -->
+							<option>forests and forest programs</option> <!-- forests_and_forest_programs.csv -->
+							<option>geodedic</option> <!-- geodedic.csv -->
+							<option>geology</option> <!-- geology.csv -->
+							<option>groundwater inventory</option> <!-- groundwater_inventory.csv -->
+							<option>healthcare and medical sites</option> <!-- healthcare_and_medical_sites.csv -->
+							<option>highway signs</option> <!-- highway_signs.csv -->
+							<option>historic</option> <!-- .historic.csv -->
+							<option>hydro</option> <!-- hydro.csv -->
+							<option>hydrants</option> <!-- hydrants.csv -->
+							<option>impervious areas/pavements</option> <!-- impervious_areas_and_pavements.csv -->
+							<option>intersections</option> <!-- intersections.csv -->
+							<option>jails</option> <!-- jails.csv -->
+							<option>jurisdictional boundaries</option> <!-- jurisdictional_boundaries.csv -->
+							<option>land conservation</option> <!-- land_conservation.csv -->
+							<option>land cover</option> <!-- .csv -->
+							<option>land use</option> <!-- .csv -->
+							<option>landfill inventory</option> <!-- .csv -->
+							<option>LESA</option> <!-- .csv -->
+							<option>lidar</option> <!-- .csv -->
+							<option>management areas</option> <!-- .csv -->
+							<option>MCAMLIS topo/plainimetric data</option> <!-- .csv -->
+							<option>MCD</option> <!-- .csv -->
+							<option>mine/quarry areas</option> <!-- .csv -->
+							<option>municipalities</option> <!-- .csv -->
+							<option>natural areas</option> <!-- .csv -->
+							<option>NEPA boundaries</option> <!-- .csv -->
+							<option>orthophoto</option> <!-- .csv -->
+							<option>ownership areas</option> <!-- .csv -->
+							<option>park and ride</option> <!-- .csv -->
+							<option>parks</option> <!-- .csv -->
+							<option>place names</option> <!-- .csv -->
+							<option>places of worship</option> <!-- .csv -->
+							<option>plainimetric data</option> <!-- .csv -->
+							<option>plats</option> <!-- .csv -->
+							<option>PLSS</option> <!-- .csv -->
+							<option>point clouds</option>
+							<option>points of interest</option>
+							<option>polling/voting</option>
+							<option>public lands</option> <!-- public_lands.csv -->
+							<option>railroads</option>
+							<option>recycling</option>
+							<option>reference</option>
+							<option>reservation boundaries</option>
+							<option>road signs and signals</option>
+							<option>roads/streets</option>
+							<option>ROW</option>
+							<option>schools</option>
+							<option>shelters</option>
+							<option>shoreland</option>
+							<option>slopes</option>
+							<option>soils</option>
+							<option>solid waste</option>
+							<option>storm and water management</option>
+							<option>subdivision</option>
+							<option>supervisory districts</option>
+							<option>tax parcels and assessment data</option>
+							<option>TAZ(traffic analysis zone)</option>
+							<option>telephone exchanges</option>
+							<option>timber harvest</option>
+							<option>town boundaries</option>
+							<option>town halls</option>
+							<option>traffic counts</option>
+							<option>transportation</option>
+							<option>unincorporated places</option>
+							<option>utilities</option>
+							<option>warning sirens</option>
+							<option>water table</option>
+							<option>water treatment</option>
+							<option>watersheds</option>
+							<option>wells</option>
+							<option>zip codes</option>
+							<option>zoning</option>
+						</select>
+
+					</li>
+					<li>
+						County</br>
+						<select id="county" class="chosen-select" style="width: 150px" >
+							<option value=""></option>
+							<option value="Adams">Adams</option>
+							<option value="Ashland">Ashland</option>
+							<option value ="Barron">Barron</option>
+							<option value="Bayfield">Bayfield</option>
+							<option value="Brown">Brown</option>
+							<option value ="Buffalo">Buffalo</option>
+							<option value ="Burnett">Burnett</option>
+							<option value ="Calumet">Calumet</option>
+							<option value ="Chippewa">Chippewa</option>
+							<option value ="Clark">Clark</option>
+							<option value="Columbia">Columbia</option>
+							<option value ="Crawford">Crawford</option>
+							<option value ="Dane">Dane</option>
+							<option value = "Dodge">Dodge</option>
+							<option value ="Door">Door</option>
+							<option value = "Douglas">Douglas</option>
+							<option value = "Dunn">Dunn</option>
+							<option value ="Eau Claire">Eau Claire</option>
+							<option value = "Florence">Florence</option>
+							<option value ="Fond du Lac">Fond du Lac</option>
+							<option value ="Forest">Forest</option>
+							<option value ="Grant">Grant</option>
+							<option value ="Green">Green</option>
+							<option value ="Green Lake">Green Lake</option>
+							<option value ="Iowa">Iowa</option>
+							<option value ="Iron">Iron</option>
+							<option value ="Jackson">Jackson</option>
+							<option value ="Jefferson">Jefferson</option>
+							<option value ="Juneau">Juneau</option>
+							<option value ="Kenosha">Kenosha</option>
+							<option value ="Kewaunee">Kewaunee</option>
+							<option value ="La Crosse">La Crosse</option>
+							<option value ="Lafayette">Lafayette</option>
+							<option value ="Langlade">Langlade</option>
+							<option value ="Lincoln">Lincoln</option>
+							<option value ="Manitowoc">Manitowoc</option>
+							<option value ="Marathon">Marathon</option>
+							<option value ="Marinette">Marinette</option>
+							<option value = "Marquette">Marquette</option>
+							<option value ="Menominee">Menominee</option>
+							<option value ="Milwaukee">Milwaukee</option>
+							<option value ="Monroe">Monroe</option>
+							<option value ="Oconto">Oconto</option>
+							<option value ="Oneida">Oneida</option>
+							<option value ="Outagamie">Outagamie</option>
+							<option value ="Ozaukee">Ozaukee</option>
+							<option value ="Pepin">Pepin</option>
+							<option value ="Pierce">Pierce</option>
+							<option value ="Polk">Polk</option>
+							<option value ="Portage">Portage</option>
+							<option value ="Price">Price</option>
+							<option value ="Racine">Racine</option>
+							<option value ="Richland">Richland</option>
+							<option value ="Rock">Rock</option>
+							<option value ="Rusk">Rusk</option>
+							<option value ="Sain Croix">Saint Croix</option>
+							<option value ="Sauk">Sauk</option>
+							<option value ="Sawyer">Sawyer</option>
+							<option value ="Shawno">Shawno</option>
+							<option value ="Sheboygan">Sheboygan</option>
+							<option value ="Taylor">Taylor</option>
+							<option value ="Trempealeau">Trempealeau</option>
+							<option value = "Vernon">Vernon</option>
+							<option value ="Vilas">Vilas</option>
+							<option value ="Walworth">Walworth</option>
+							<option value ="Washburn">Washburn</option>
+							<option value ="Washington">Washington</option>
+							<option value ="Waukesha">Waukesha</option>
+							<option value ="Waupaca">Waupaca</option>
+							<option value ="Waushara">Waushara</option>
+							<option value ="Winnebago">Winnebago</option>
+							<option value ="Wood">Wood</option>
+						</select>
+					</li>
+					<li>
+						Year</br>
+						<select id="year" class="chosen-select">
+						</select>
+					</li>
+					<li>
+						<input type='button' value="Search" id="search_button">
+					</li>
+				</ul>
+
+				</div>
+			</div>
 		</div>
 	</div>
 	<!--html elements to hold page content, map-->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8">
-				<div id = "map" class= "map"></div>
-			</div>
 			<div class="col-md-3">
 				<div id="data" class="data"> This is where the data is placed</div>
 			</div>
+			<div class="col-md-8">
+				<div id = "map" class= "map"></div>
+			</div>
+			
 		</div>
 	</div>
 
@@ -46,223 +271,7 @@
 		<!--create side panel for searching-->
 		<div id = "search" class="search">
 			<h2><b>Search</b></h2>
-			<form>
-							<!-- Data type must be processed in lowercase, spaces changed to '_' -->
-				Data Type</br>
-				<select id="type" class = "chosen-select">
-					
-					<option value=""></option>
-					<option>2010 Flood</option> <!-- 2010Flood.csv -->
-					<option>addresses</option>
-					<option>admin</option> <!-- admin.csv -->
-					<option>administrative boundaries</option> <!-- administrativeboundaries.csv -->
-					<option>agricultural</option> <!-- agricultural.csv -->
-					<option>airports</option> <!-- airports.csv -->
-					<option>aldermanic districts</option> <!-- aldermandistricts.csv -->
-					<option>alleys</option> <!-- alleys.csv -->
-					<option>annexations</option> <!-- annexations.csv -->
-					<option>archery and hunting sites</option> <!-- archery_and_hunting_sites.csv -->
-					<option>automated mapping</option> <!-- automated_mapping.csv -->
-					<option>banks</option> <!-- banks.csv -->
-					<option>bathymetry</option> <!-- bathymetry.csv -->
-					<option>bedrock</option> <!-- bedrock.csv -->
-					<option>biking</option> <!-- biking.csv -->
-					<option>boat landings</option> <!-- boat_landings.csv -->
-					<option>breaklines</option> <!-- breaklines.csv -->
-					<option>bridges</option> <!-- bridges.csv -->
-					<option>buildings</option> <!-- buildings.csv -->
-					<option>bus routes</option> <!-- bus_routes.csv -->
-					<option>campgrounds</option> <!-- campgrounds.csv -->
-					<option>catch basin</option> <!-- catch_basin.csv -->
-					<option>cell towers</option> <!-- cell_towers.csv -->
-					<option>cemeteries</option> <!-- cemeteries.csv -->
-					<option>census</option> <!-- census.csv -->
-					<option>civil</option> <!-- civil.csv -->
-					<option>comprehensive plan</option> <!-- comprehensive_plan.csv -->
-					<option>contours</option> <!-- contours.csv -->
-					<option>construction lines</option> <!-- construction_lines.csv -->
-					<option>control corners</option> <!-- control_corners.csv -->
-					<option>county boundary</option> <!-- county_boundary.csv -->
-					<option>crimes</option> <!-- crimes.csv -->
-					<option>CSM</option> <!-- csm.csv -->
-					<option>cultural and recreational features</option> <!-- cultural.csv -->
-					<option>dams</option> <!-- dams.csv -->
-					<option>day care and elderly facilities</option> <!-- day_care_and_elderly_facilities.csv -->
-					<option>districts</option> <!-- districts.csv -->
-					<option>DNR fire response</option> <!-- dnr_fire_response.csv -->
-					<option>DNR lands</option> <!-- dnr_lands.csv -->
-					<option>drainage</option> <!-- drainage.csv -->
-					<option>DRG</option> <!-- drg.csv -->
-					<option>driveways</option> <!-- driveways.csv -->
-					<option>DTM</option> <!-- dtm.csv -->
-					<option>easements</option> <!-- easements.csv -->
-					<option>emergency</option> <!-- emergency.csv -->
-					<option>environmental</option> <!-- environmental.csv -->
-					<option>FEMA LOMC</option> <!-- fema_lomc.csv -->
-					<option>ferry crossing</option> <!-- ferry_crossing.csv -->
-					<option>flood hazard</option> <!-- flood_hazard.csv -->
-					<option>floodplains</option> <!-- floodplains.csv -->
-					<option>forests and forest programs</option> <!-- forests_and_forest_programs.csv -->
-					<option>geodedic</option> <!-- geodedic.csv -->
-					<option>geology</option> <!-- geology.csv -->
-					<option>groundwater inventory</option> <!-- groundwater_inventory.csv -->
-					<option>healthcare and medical sites</option> <!-- healthcare_and_medical_sites.csv -->
-					<option>highway signs</option> <!-- highway_signs.csv -->
-					<option>historic</option> <!-- .historic.csv -->
-					<option>hydro</option> <!-- hydro.csv -->
-					<option>hydrants</option> <!-- hydrants.csv -->
-					<option>impervious areas/pavements</option> <!-- impervious_areas_and_pavements.csv -->
-					<option>intersections</option> <!-- intersections.csv -->
-					<option>jails</option> <!-- jails.csv -->
-					<option>jurisdictional boundaries</option> <!-- jurisdictional_boundaries.csv -->
-					<option>land conservation</option> <!-- land_conservation.csv -->
-					<option>land cover</option> <!-- .csv -->
-					<option>land use</option> <!-- .csv -->
-					<option>landfill inventory</option> <!-- .csv -->
-					<option>LESA</option> <!-- .csv -->
-					<option>lidar</option> <!-- .csv -->
-					<option>management areas</option> <!-- .csv -->
-					<option>MCAMLIS topo/plainimetric data</option> <!-- .csv -->
-					<option>MCD</option> <!-- .csv -->
-					<option>mine/quarry areas</option> <!-- .csv -->
-					<option>municipalities</option> <!-- .csv -->
-					<option>natural areas</option> <!-- .csv -->
-					<option>NEPA boundaries</option> <!-- .csv -->
-					<option>orthophoto</option> <!-- .csv -->
-					<option>ownership areas</option> <!-- .csv -->
-					<option>park and ride</option> <!-- .csv -->
-					<option>parks</option> <!-- .csv -->
-					<option>place names</option> <!-- .csv -->
-					<option>places of worship</option> <!-- .csv -->
-					<option>plainimetric data</option> <!-- .csv -->
-					<option>plats</option> <!-- .csv -->
-					<option>PLSS</option> <!-- .csv -->
-					<option>point clouds</option>
-					<option>points of interest</option>
-					<option>polling/voting</option>
-					<option>public lands</option> <!-- public_lands.csv -->
-					<option>railroads</option>
-					<option>recycling</option>
-					<option>reference</option>
-					<option>reservation boundaries</option>
-					<option>road signs and signals</option>
-					<option>roads/streets</option>
-					<option>ROW</option>
-					<option>schools</option>
-					<option>shelters</option>
-					<option>shoreland</option>
-					<option>slopes</option>
-					<option>soils</option>
-					<option>solid waste</option>
-					<option>storm and water management</option>
-					<option>subdivision</option>
-					<option>supervisory districts</option>
-					<option>tax parcels and assessment data</option>
-					<option>TAZ(traffic analysis zone)</option>
-					<option>telephone exchanges</option>
-					<option>timber harvest</option>
-					<option>town boundaries</option>
-					<option>town halls</option>
-					<option>traffic counts</option>
-					<option>transportation</option>
-					<option>unincorporated places</option>
-					<option>utilities</option>
-					<option>warning sirens</option>
-					<option>water table</option>
-					<option>water treatment</option>
-					<option>watersheds</option>
-					<option>wells</option>
-					<option>zip codes</option>
-					<option>zoning</option>
-
-
-				</select>
-				</br></br></br>County</br>
-				<select id="county" class="chosen-select" style="width: 150px" >
-					<option value=""></option>
-					<option value="Adams">Adams</option>
-					<option value="Ashland">Ashland</option>
-					<option value ="Barron">Barron</option>
-					<option value="Bayfield">Bayfield</option>
-					<option value="Brown">Brown</option>
-					<option value ="Buffalo">Buffalo</option>
-					<option value ="Burnett">Burnett</option>
-					<option value ="Calumet">Calumet</option>
-					<option value ="Chippewa">Chippewa</option>
-					<option value ="Clark">Clark</option>
-					<option value="Columbia">Columbia</option>
-					<option value ="Crawford">Crawford</option>
-					<option value ="Dane">Dane</option>
-					<option value = "Dodge">Dodge</option>
-					<option value ="Door">Door</option>
-					<option value = "Douglas">Douglas</option>
-					<option value = "Dunn">Dunn</option>
-					<option value ="Eau Claire">Eau Claire</option>
-					<option value = "Florence">Florence</option>
-					<option value ="Fond du Lac">Fond du Lac</option>
-					<option value ="Forest">Forest</option>
-					<option value ="Grant">Grant</option>
-					<option value ="Green">Green</option>
-					<option value ="Green Lake">Green Lake</option>
-					<option value ="Iowa">Iowa</option>
-					<option value ="Iron">Iron</option>
-					<option value ="Jackson">Jackson</option>
-					<option value ="Jefferson">Jefferson</option>
-					<option value ="Juneau">Juneau</option>
-					<option value ="Kenosha">Kenosha</option>
-					<option value ="Kewaunee">Kewaunee</option>
-					<option value ="La Crosse">La Crosse</option>
-					<option value ="Lafayette">Lafayette</option>
-					<option value ="Langlade">Langlade</option>
-					<option value ="Lincoln">Lincoln</option>
-					<option value ="Manitowoc">Manitowoc</option>
-					<option value ="Marathon">Marathon</option>
-					<option value ="Marinette">Marinette</option>
-					<option value = "Marquette">Marquette</option>
-					<option value ="Menominee">Menominee</option>
-					<option value ="Milwaukee">Milwaukee</option>
-					<option value ="Monroe">Monroe</option>
-					<option value ="Oconto">Oconto</option>
-					<option value ="Oneida">Oneida</option>
-					<option value ="Outagamie">Outagamie</option>
-					<option value ="Ozaukee">Ozaukee</option>
-					<option value ="Pepin">Pepin</option>
-					<option value ="Pierce">Pierce</option>
-					<option value ="Polk">Polk</option>
-					<option value ="Portage">Portage</option>
-					<option value ="Price">Price</option>
-					<option value ="Racine">Racine</option>
-					<option value ="Richland">Richland</option>
-					<option value ="Rock">Rock</option>
-					<option value ="Rusk">Rusk</option>
-					<option value ="Sain Croix">Saint Croix</option>
-					<option value ="Sauk">Sauk</option>
-					<option value ="Sawyer">Sawyer</option>
-					<option value ="Shawno">Shawno</option>
-					<option value ="Sheboygan">Sheboygan</option>
-					<option value ="Taylor">Taylor</option>
-					<option value ="Trempealeau">Trempealeau</option>
-					<option value = "Vernon">Vernon</option>
-					<option value ="Vilas">Vilas</option>
-					<option value ="Walworth">Walworth</option>
-					<option value ="Washburn">Washburn</option>
-					<option value ="Washington">Washington</option>
-					<option value ="Waukesha">Waukesha</option>
-					<option value ="Waupaca">Waupaca</option>
-					<option value ="Waushara">Waushara</option>
-					<option value ="Winnebago">Winnebago</option>
-					<option value ="Wood">Wood</option>
-
-				</select>
-
-				</br></br></br>Year</br>
-				<select id="year" class="chosen-select">
-				</select>
-
-
-
-				<input type='button' value="Search" id="search_button">
-			</form>
+			
 		</div>
 
 
