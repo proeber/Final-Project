@@ -159,8 +159,18 @@ function highlightSelection(county){
 
   function zoomToFeature(e){
 
+    var layer = e.target;
+
     map.fitBounds(e.target.getBounds());
 
+    e.target.setStyle({
+          weight:5,
+          color: 'black',
+          dashArray:'',
+          fillOpacity:1,
+          fillColor:'yellow'
+
+    });
   }
 
   function parser(type)
