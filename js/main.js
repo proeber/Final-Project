@@ -11,8 +11,10 @@ $(document).ready(function()
     console.log(screenHeight, screen.width);
 
    // $(".container").css("height:"+ screenHeight);
-
+  // Initializing the dropdowns
   $(".chosen-select").chosen();
+  //Initializing the table
+  $('#dataTable').DataTable();
 
 	//new leaflet map
 	map = L.map('map',{
