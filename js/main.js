@@ -38,7 +38,7 @@ $(document).ready(function()
 	//new leaflet tilelayer for background slippy tiles
 	tiles = L.tileLayer('http://{s}.acetate.geoiq.com/tiles/acetate/{z}/{x}/{y}.png',
 	{
-		attribution: 'Acetate tileset from GeoIQ Data from Wikipedia'
+		attribution: 'Acetate tileset from GeoIQ Data from wikipedia'
 	}).addTo(map);
 
 	//retrieve choropleth data
@@ -107,11 +107,8 @@ $(document).ready(function()
 
 		layerTarget.setStyle({
 			weight: 5,
-			color: 'black',
-			dashArray: ''
+			color: 'black'
 
-			//fillOpacity: 1,
-			//fillColor: 'green'
 		});
 
 	}
@@ -123,6 +120,7 @@ function highlightSelection(county){
 	var x = 0;
 	//var current = counties[i].properties.NAME;
 
+
 	for(key in counties){
 
 		//console.log(key == county.trim(), key, county.trim());
@@ -130,14 +128,12 @@ function highlightSelection(county){
 			if(key === county.trim() )
 		{
 				layer = counties[key].bringToFront();
-				console.log(layer);
 
 				layer.setStyle({
-					weight:5,
-					color: 'black',
-					dashArray:'',
+					//weight:5,
+					color: '#F7F5E8',
 					fillOpacity:1,
-					fillColor:'yellow'
+					fillColor:'#b70101'
 				});
 		}
 
@@ -157,13 +153,13 @@ function highlightSelection(county){
 		else{
 		
 			if(selected.indexOf(e.target.feature.properties.NAME)>-1){
+				console.log("stuff");
 
 				e.target.setStyle({
-					weight:5,
-					color:'black',
-					dashArray:'',
+					weight:2,
+					color:'#F7F5E8',
 					fillOpacity:1,
-					fillColor:'yellow'
+					fillColor:'#b70101'
 				});
 
 			}
@@ -190,10 +186,10 @@ function highlightSelection(county){
 
 	function style(feature){
 		return{
-			fillColor: '#b70101',
+			fillColor: '#8A939D',
 			weight: 2,
 			opacity: 1,
-			color: 'white',
+			color: '#F7F5E8',
 			//dashArray: '3',
 			fillOpacity: 1
 		};
