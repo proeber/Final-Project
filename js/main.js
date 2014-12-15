@@ -15,7 +15,7 @@ $(document).ready(function()
   // Initializing the dropdowns
   $(".chosen-select").chosen();
   //Initializing the table
-//  $('#dataTable').tableSorter();
+  $('#dataTable').tablesorter();
   
 
   $("#reset").click(function(){

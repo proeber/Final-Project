@@ -15,6 +15,7 @@
 	<!end iff-->
 	<!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/tablesorter/themes/blue/style.css"
 
 </head>
 
@@ -262,24 +263,37 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div id="data" class="data">
-					<table id="dataTable" class="display">
-					  	<thead>
-					        <tr>
-					            <th>Column 1</th>
-					            <th>Column 2</th>
-					        </tr>
-				    	</thead>
-				    	<tbody>
-				        	<tr>
-				            	<td>Row 1 Data 1</td>
-				            	<td>Row 1 Data 2</td>
-				        	</tr>
-				        	<tr>
-				            	<td>Row 2 Data 1</td>
-				            	<td>Row 2 Data 2</td>
-				        	</tr>
-				    	</tbody>
-					</table>
+					<table id="dataTable" class="tablesorter"> 
+						<thead> 
+						<tr> 
+						    <th>County</th> 
+						    <th>Data Type</th> 
+						    <th>Year</th> 
+						</tr> 
+						</thead> 
+						<tbody> 
+						<tr> 
+						    <td>Smith</td> 
+						    <td>John</td> 
+						    <td>2000</td>  
+						</tr> 
+						<tr> 
+						    <td>Bach</td> 
+						    <td>Frank</td> 
+						    <td>2001</td> 
+						</tr> 
+						<tr> 
+						    <td>Doe</td> 
+						    <td>Jason</td> 
+						    <td>2002</td> 
+						</tr> 
+						<tr> 
+						    <td>Conway</td> 
+						    <td>Tim</td> 
+						    <td>2004</td> 
+						</tr> 
+						</tbody> 
+					</table> 
 				</div>
 			</div>
 			<div class="col-md-8">
@@ -303,6 +317,6 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<!-- Javascript for table -->
-	<script type="text/javascript" src="/js/tablesorter/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="js/tablesorter/jquery.tablesorter.js"></script>
 </body>
 </html>
