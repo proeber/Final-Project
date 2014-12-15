@@ -95,7 +95,7 @@ $(document).ready(function()
 	//highlight the county
 	function highlight(e){
 
-		layerTarget = e.target;
+		layerTarget = e.target.bringToFront();
 
 		// layer.bindPopup(layer.feature.properties.NAME);
 		// layer.on('mouseover',function(e){
@@ -108,9 +108,10 @@ $(document).ready(function()
 		layerTarget.setStyle({
 			weight: 5,
 			color: 'black',
-			dashArray: '',
-			fillOpacity: 1,
-			fillColor: 'green'
+			dashArray: ''
+
+			//fillOpacity: 1,
+			//fillColor: 'green'
 		});
 
 	}
@@ -128,7 +129,7 @@ function highlightSelection(county){
 
 			if(key === county.trim() )
 		{
-				layer = counties[key];
+				layer = counties[key].bringToFront();
 				console.log(layer);
 
 				layer.setStyle({
@@ -156,7 +157,6 @@ function highlightSelection(county){
 		else{
 		
 			if(selected.indexOf(e.target.feature.properties.NAME)>-1){
-				console.log(selected);
 
 				e.target.setStyle({
 					weight:5,
@@ -190,11 +190,11 @@ function highlightSelection(county){
 
 	function style(feature){
 		return{
-			fillColor: "red",
+			fillColor: '#b70101',
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			dashArray: '3',
+			//dashArray: '3',
 			fillOpacity: 1
 		};
 	}
