@@ -15,7 +15,12 @@ $(document).ready(function()
   // Initializing the dropdowns
   $(".chosen-select").chosen();
   //Initializing the table
-//d  $('#dataTable').tableSorter();
+//  $('#dataTable').tableSorter();
+  
+
+  $("#reset").click(function(){
+    history.go(0);
+  });
 
 	//new leaflet maps
 	map = L.map('map',{
@@ -149,7 +154,7 @@ function highlightSelection(county){
     }
     else{
       for(var i =0;i<selected.length;i++){
-        
+
         if(e.target.feature.properties.NAME == selected[i].trim()){
 
           console.log(e.target.feature.properties.NAME, selected[i]);
