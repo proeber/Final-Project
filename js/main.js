@@ -82,8 +82,7 @@ $(document).ready(function()
 			// This goes to the function at line 111 to parse the csv data using the user input
 			parser(correctedType);
 			// Insert code that has to do with data here
-			//highlightSelection(county);
-
+		
 
 		});
 	});
@@ -150,35 +149,30 @@ function highlightSelection(county){
 	function resetHighlight(e) {
 
 		if(!select){
-			console.log(i)
+
 			geojson.resetStyle(e.target);
 
 		}
 		else{
-			for(var i =0;i<selected.length;i++){
+		
+			if(selected.indexOf(e.target.feature.properties.NAME)>-1){
+				console.log(selected);
 
-				if(e.target.feature.properties.NAME == selected[i].trim()){
+				e.target.setStyle({
+					weight:5,
+					color:'black',
+					dashArray:'',
+					fillOpacity:1,
+					fillColor:'yellow'
+				});
 
-					console.log(e.target.feature.properties.NAME, selected[i]);
-
-					e.target.setStyle({
-						weight:5,
-						color: 'black',
-						dashArray:'',
-					 fillOpacity:1,
-					 fillColor:'yellow'
-
-					});
-				}
-				else{
+			}
+			else{
 					geojson.resetStyle(e.target);
 				}
-			}
-		}
-		
 
-		
-		
+		}
+				
 	}
 
 
@@ -250,9 +244,10 @@ function highlightSelection(county){
 	function updateDropdown(years, data)
 	{
 		var bool = false;
+		var first =false;
 		var index =-1;
 		$('#county').empty();
-		for(j = 1; j < data.length; j++)
+		for(j = 0; j < data.length; j++)
 		{
 			bool = false;
 			for(k = 0; k < data[j].length; k++)
@@ -261,6 +256,10 @@ function highlightSelection(county){
 				{
 					// Setting boolean to true when found TRUE in current row
 					bool = true;
+					if (first == false){
+						$('#county').append('<option value ="nothing">'+""+'</option>');
+					}
+
 					var option = '';
 					option = '<option value="' + data[j][0] + '">' + data[j][0] + '</option>';
 					$('#county').append(option);
@@ -269,14 +268,13 @@ function highlightSelection(county){
 
 					index +=1;
 					//call the highlight option for a selection from the dropdowns
-					console.log(data[j][0]);
 					selected[index] = data[j][0].trim();
 					highlightSelection(data[j][0]);
 				}
 			}
 		}
 		var option = '';
-		for (i = 1; i < years.length; i++){
+		for (i = 0; i < years.length; i++){
 			 option += '<option value="'+ years[i] + '">' + years[i] + '</option>';
 		}
 		$('#year').append(option);
@@ -287,11 +285,10 @@ function highlightSelection(county){
 	{
 		layerTarget.on('click', function(e)
 		{
-			console.log(e.target.feature.properties.NAME);
 			$( ".tBody" ).empty();
 			for(i = 1; i < years.length; i++)
 			{
-				console.log(years.length);
+				
 			}
 		});
 	}
