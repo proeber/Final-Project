@@ -6,17 +6,18 @@ $(document).ready(function()
     choropleth;
     var counties = [];
     var screenHeight;
+    var selected =[];
+    var select = false;
 
     screenHeight = screen.height;
-    console.log(screenHeight, screen.width);
 
    // $(".container").css("height:"+ screenHeight);
   // Initializing the dropdowns
   $(".chosen-select").chosen();
   //Initializing the table
-  $('#dataTable').DataTable();
+//d  $('#dataTable').tableSorter();
 
-	//new leaflet map
+	//new leaflet maps
 	map = L.map('map',{
     center: [44.7, -90],
 		zoom: 7,
@@ -51,9 +52,12 @@ $(document).ready(function()
 
   }).fail(function(){alert("There was a problem loading data")});
 
+
   $( function() {
     // Getting the input from the user using jQuery
     $('input#search_button').click( function() {
+
+      select = true;
       //Storing the input values
       var county;
       var type;
@@ -62,7 +66,7 @@ $(document).ready(function()
       })
       $('#type_chosen').find('.chosen-single').each(function(){
       type = $(this).find('span').text();
-      })
+      });
       
       console.log(county);
       // Formatting the data type string correctly
@@ -86,19 +90,20 @@ $(document).ready(function()
 
     var layer = e.target;
 
-    layer.bindPopup(layer.feature.properties.NAME);
-    layer.on('mouseover',function(e){
-      this.openPopup();
-    });
-    layer.on('mouseout',function(e){
-      this.closePopup();
-    });
+    // layer.bindPopup(layer.feature.properties.NAME);
+    // layer.on('mouseover',function(e){
+    //   this.openPopup();
+    // });
+    // layer.on('mouseout',function(e){
+    //   this.closePopup();
+    // });
 
     layer.setStyle({
       weight: 5,
       color: 'black',
       dashArray: '',
-      fillOpacity: 1
+      fillOpacity: 1,
+      fillColor: 'green'
     });
 
   }
@@ -136,7 +141,37 @@ function highlightSelection(county){
 
   //reset highlight
   function resetHighlight(e) {
+
+    if(!select){
+      console.log(i)
       geojson.resetStyle(e.target);
+
+    }
+    else{
+      for(var i =0;i<selected.length;i++){
+        
+        if(e.target.feature.properties.NAME == selected[i].trim()){
+
+          console.log(e.target.feature.properties.NAME, selected[i]);
+
+          e.target.setStyle({
+            weight:5,
+            color: 'black',
+            dashArray:'',
+           fillOpacity:1,
+           fillColor:'yellow'
+
+          });
+        }
+        else{
+          geojson.resetStyle(e.target);
+        }
+      }
+    }
+    
+
+    
+    
   }
 
 
@@ -204,6 +239,8 @@ function highlightSelection(county){
   function updateDropdown(years, data)
   {
     var bool = false;
+    var index =-1;
+
     $('#county').empty();
     for(j = 1; j < data.length; j++)
     {
@@ -219,8 +256,11 @@ function highlightSelection(county){
           $('#county').append(option);
           $('#county').trigger('chosen:updated');
           //console.log(data[j][0]);
+
+          index +=1;
           //call the highlight option for a selection from the dropdowns
           console.log(data[j][0]);
+          selected[index] = data[j][0].trim();
           highlightSelection(data[j][0]);
         }
       }
