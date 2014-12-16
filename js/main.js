@@ -27,7 +27,8 @@ $(document).ready(function()
 	map = L.map('map',{
 		center: [44.7, -90],
 		zoom: 7,
-		minZoom: 7,
+		minZoom: 6,
+		maxZoom: 9
 
 	});
 	map.setMaxBounds([[49,-85],[42,-94]]);
@@ -82,7 +83,8 @@ $(document).ready(function()
 			// This goes to the function at line 111 to parse the csv data using the user input
 			parser(correctedType);
 			// Insert code that has to do with data here
-		
+			highlightSelection(county);
+			selected[0] = county.trim();
 
 		});
 	});
@@ -153,7 +155,6 @@ function highlightSelection(county){
 		else{
 		
 			if(selected.indexOf(e.target.feature.properties.NAME)>-1){
-				console.log("stuff");
 
 				e.target.setStyle({
 					weight:2,
@@ -176,7 +177,7 @@ function highlightSelection(county){
 		layer.on({
 				mouseover: highlight,
 				mouseout: resetHighlight,
-				dblclick: zoomToFeature
+				dblclick: display
 		});
 		layer.on("click", function(e)
 		{
@@ -195,7 +196,7 @@ function highlightSelection(county){
 		};
 	}
 
-	function zoomToFeature(e){
+	function display(e){
 
 		var layerTarget = e.target;
 
@@ -222,6 +223,7 @@ function highlightSelection(county){
 			delimiter: ',',
 			complete: function(results) {
 				updateDropdown(results.data[0], results.data);
+				console.log(results);
 			}
 		})
 	}
@@ -263,9 +265,11 @@ function highlightSelection(county){
 					//console.log(data[j][0]);
 
 					index +=1;
+
 					//call the highlight option for a selection from the dropdowns
 					selected[index] = data[j][0].trim();
 					highlightSelection(data[j][0]);
+		
 				}
 			}
 		}
