@@ -434,13 +434,15 @@ function highlightSelection(county){
 		//console.log(e.target);
 
 		if(select){
-			console.log(selected.indexOf(e.target.feature.properties.NAME));
+		$(".tBody").empty();
+			//console.log(selected.indexOf(e.target.feature.properties.NAME));
 			if(selected.indexOf(e.target.feature.properties.NAME.trim())>-1){
 				index = selected.indexOf(e.target.feature.properties.NAME);
-				console.log(index);
-				console.log(selectedData[index].length);
+				// console.log(index);
+				// console.log(selectedData[index].length);
 				for(var i=0;i<selectedData[index].length;i++){
-					console.log(selected[index], " ",selectedData[index][i]);
+					//console.log(selected[index], " ",selectedData[index][i]);
+					$(".tBody").append("<tr><td>"+selected[index]+"</td><td>"+type+"</td><td>"+selectedData[index][i]+"</td><td>"+"request"+"</td></tr>");
 				}
 			}
 						
@@ -448,7 +450,9 @@ function highlightSelection(county){
 
 		else{
 
-
+			highlightSelection(e.target.feature.properties.NAME);
+			selected[0]=e.target.feature.properties.NAME;
+			console.log(selected);
 			$( ".tBody" ).empty();
 			tableParser(e.target.feature.properties.NAME);
 			//console.log(e.target.feature.properties.NAME);
@@ -481,8 +485,8 @@ function highlightSelection(county){
 				}
 			}	
 
-		$( ".tBody" ).empty();
-		tableParser(e.target.feature.properties.NAME);
+		//$( ".tBody" ).empty();
+		//tableParser(e.target.feature.properties.NAME);
 		//console.log(e.target.feature.properties.NAME);
 		// for(j = 0; j < dataTable.length; j++)
 		// {
