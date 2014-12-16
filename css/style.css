@@ -1,5 +1,3 @@
-/* Stylesheet written by Rich Donohue and Carl Sack for Time Series Proportional Symbol Maps with Leaflet and JQuery */
-
 body {
     font-family: sans-serif;
     margin:3px;
@@ -17,6 +15,12 @@ h2,div, span {
 	-ms-user-select: none;
 	user-select: none;
 }
+
+.page-header
+{
+	text-align: center;
+}
+
 #search
 {
 	width:20%;
