@@ -17,6 +17,9 @@ h2,div, span {
 	-ms-user-select: none;
 	user-select: none;
 }
+.page-header{
+	text-align: center;
+}
 #search
 {
 	width:20%;
