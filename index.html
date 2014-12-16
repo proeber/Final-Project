@@ -2,7 +2,7 @@
 <html lang ="en">
 <head>
 	<meta charset ="utf-8">
-	<title>Map</title>
+	<title>Robinson Map Library Search Tool</title>
 
 	<meta name= "viewport" content="width=device-width">
 
@@ -15,15 +15,15 @@
 	<!end iff-->
 	<!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="js/tablesorter/themes/blue/style.css">
+    <link rel="stylesheet" href="js/tablesorter/themes/blue/style.css"
 
 </head>
 
 <body>
 
 	<div class="page-header">
-		<h1>Wisconsin Data Collections</h1>
-		<p class="lead">We have created this tool that makes it easier and faster for you to search through the Robinson Map Library Geospatial Archive</p>
+		<h1 id = "title">Wisconsin Data Collections</h1>
+		<p class="lead" id = "overview">We have created this tool that makes it easier and faster for you to search through the Robinson Map Library Geospatial Archive</p>
 	</div>
 
 	<div class="container">
@@ -65,7 +65,7 @@
 							<option>census</option> <!-- census.csv -->
 							<option>civil</option> <!-- civil.csv -->
 							<option>comprehensive plan</option> <!-- comprehensive_plan.csv -->
-							<option>contours</option> <!-- contours.csv -->
+							<!--option>contours</option>  contours.csv -->
 							<option>construction lines</option> <!-- construction_lines.csv -->
 							<option>control corners</option> <!-- control_corners.csv -->
 							<option>county boundary</option> <!-- county_boundary.csv -->
@@ -97,42 +97,42 @@
 							<option>historic</option> <!-- .historic.csv -->
 							<option>hydro</option> <!-- hydro.csv -->
 							<option>hydrants</option> <!-- hydrants.csv -->
-							<option>impervious areas/pavements</option> <!-- impervious_areas_and_pavements.csv -->
+							<option>impervious areas and pavements</option> <!-- impervious_areas_and_pavements.csv -->
 							<option>intersections</option> <!-- intersections.csv -->
 							<option>jails</option> <!-- jails.csv -->
 							<option>jurisdictional boundaries</option> <!-- jurisdictional_boundaries.csv -->
 							<option>land conservation</option> <!-- land_conservation.csv -->
-							<option>land cover</option> <!-- .csv -->
-							<option>land use</option> <!-- .csv -->
-							<option>landfill inventory</option> <!-- .csv -->
-							<option>LESA</option> <!-- .csv -->
-							<option>lidar</option> <!-- .csv -->
-							<option>management areas</option> <!-- .csv -->
-							<option>MCAMLIS topo/plainimetric data</option> <!-- .csv -->
-							<option>MCD</option> <!-- .csv -->
-							<option>mine/quarry areas</option> <!-- .csv -->
-							<option>municipalities</option> <!-- .csv -->
-							<option>natural areas</option> <!-- .csv -->
-							<option>NEPA boundaries</option> <!-- .csv -->
-							<option>orthophoto</option> <!-- .csv -->
-							<option>ownership areas</option> <!-- .csv -->
-							<option>park and ride</option> <!-- .csv -->
+							<!--option>land cover</option> .csv -->
+							<!--option>land use</option> .csv -->
+							<!--option>landfill inventory</option>  .csv -->
+							<!--option>LESA</option>  .csv -->
+							<!--option>lidar</option> <! .csv -->
+							<!--option>management areas</option> <! .csv -->
+							<!--option>MCAMLIS topo/plainimetric data</option> <! .csv -->
+							<!--option>MCD</option> <! .csv -->
+							<!--option>mine/quarry areas</option> <! .csv -->
+							<!--option>municipalities</option> <! .csv -->
+							<!--option>natural areas</option> <! .csv -->
+							<!--option>NEPA boundaries</option> <! .csv -->
+							<!--option>orthophoto</option> <! .csv -->
+							<!--option>ownership areas</option> <! .csv -->
+							<!--option>park and ride</option> <! .csv -->
 							<option>parks</option> <!-- .csv -->
-							<option>place names</option> <!-- .csv -->
+							<!--option>place names</option> <! .csv -->
 							<option>places of worship</option> <!-- .csv -->
 							<option>plainimetric data</option> <!-- .csv -->
 							<option>plats</option> <!-- .csv -->
 							<option>PLSS</option> <!-- .csv -->
-							<option>point clouds</option>
+							<!--<option>point clouds</option>-->
 							<option>points of interest</option>
-							<option>polling/voting</option>
+							<!--<option>polling/voting</option>-->
 							<option>public lands</option> <!-- public_lands.csv -->
 							<option>railroads</option>
-							<option>recycling</option>
-							<option>reference</option>
+							<option>recycling centers</option>
+							<!--option>reference</option> -->
 							<option>reservation boundaries</option>
 							<option>road signs and signals</option>
-							<option>roads/streets</option>
+							<!--<option>roads or streets</option>-->
 							<option>ROW</option>
 							<option>schools</option>
 							<option>shelters</option>
@@ -141,18 +141,19 @@
 							<option>soils</option>
 							<option>solid waste</option>
 							<option>storm and water management</option>
-							<option>subdivision</option>
+							<option>subdivisions</option>
 							<option>supervisory districts</option>
 							<option>tax parcels and assessment data</option>
-							<option>TAZ(traffic analysis zone)</option>
+							<!--option>TAZ(traffic analysis zone)</option>-->
 							<option>telephone exchanges</option>
-							<option>timber harvest</option>
+							<!--option>timber harvest</option> -->
 							<option>town boundaries</option>
 							<option>town halls</option>
 							<option>traffic counts</option>
 							<option>transportation</option>
 							<option>unincorporated places</option>
 							<option>utilities</option>
+							<option>voting districts</optioin>
 							<option>warning sirens</option>
 							<option>water table</option>
 							<option>water treatment</option>
@@ -312,14 +313,15 @@
 	<!--script links to jQuery and leaflet-->
 	<script src="js/jquery.js"></script>
 	<script src="js/leaflet.js"></script>
-    <script src ="js/chosen.jquery.js"  type="text/javascript"></script>
+	<script src ="js/chosen.jquery.js"  type="text/javascript"></script>
 	<script src="js/prism.js" type ="text/javascript"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+	<!--main script-->
 	<!-- Script for the csv parser -->
 	<script type="text/javascript" src="js/PapaParse/papaparse.min.js"></script>
 	<!-- Script for bootstrap -->
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="js/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<!-- Javascript for table -->
 	<script type="text/javascript" src="js/tablesorter/jquery.tablesorter.js"></script>
 </body>

@@ -252,13 +252,13 @@ function highlightSelection(county){
 			typeArray[i] = "/data/csv/" + typeArray[i] + ".csv";
 			//console.log(typeArray[i]);
 			//console.log(path);
+				console.log(typeArray[i]);
 
 			Papa.parse(typeArray[i], {
 			download: true,
 			delimiter: ',',
 			complete: function(results)
 			{
-				console.log(typeArray[i]);
 				// for(var j = 1; j < length; j++)
 				// {
 					//console.log(results.data[0]);
