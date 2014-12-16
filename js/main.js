@@ -12,11 +12,7 @@ $(document).ready(function()
 		var yearsTable;
 		var selectedData =[];
 		var type;
-<<<<<<< HEAD
 		var year;
-=======
->>>>>>> DataDisplayPerCounty
-
 
 		screenHeight = screen.height;
 
@@ -97,11 +93,9 @@ $(document).ready(function()
 			});
 			
 			//console.log(county);
-<<<<<<< HEAD
 
 			// Insert code that has to do with data here
 
-=======
 			// Formatting the data type string correctly
 			var correctedType = dataFormat(type);
 			// This goes to the function at line 111 to parse the csv data using the user input
@@ -109,7 +103,6 @@ $(document).ready(function()
 			// Insert code that has to do with data here
 			highlightSelection(county);
 			selected[0] = county.trim();
->>>>>>> DataDisplayPerCounty
 
 		});
 	});
@@ -244,7 +237,6 @@ function highlightSelection(county){
 			download: true,
 			delimiter: ',',
 			complete: function(results) {
-<<<<<<< HEAD
 				console.log(path ,results);
 				if(type=="year"){
 					processTable(results);
@@ -252,11 +244,8 @@ function highlightSelection(county){
 				else{
 						updateDropdown(results.data[0], results.data);
 				}
-			
-=======
 			//	console.log(results);
 				updateDropdown(results.data[0], results.data);
->>>>>>> DataDisplayPerCounty
 				//console.log(results);
 			}
 		})
@@ -356,11 +345,7 @@ function highlightSelection(county){
 	// Updating the dropdown menus with the correct data from the csv files
 	function updateDropdown(years, data)
 	{
-<<<<<<< HEAD
 		console.log(years,data);
-=======
-
->>>>>>> DataDisplayPerCounty
 		var yr =[];
 		var place = 0;
 		var counter= -1;
@@ -461,7 +446,6 @@ function highlightSelection(county){
 				for(var i=0;i<selectedData[index].length;i++){
 					//console.log(selected[index], " ",selectedData[index][i]);
 					$(".tBody").append("<tr><td>"+selected[index]+"</td><td>"+type+"</td><td>"+selectedData[index][i]+"</td><td>"+"request"+"</td></tr>");
-<<<<<<< HEAD
 				}
 			}
 						
@@ -549,23 +533,20 @@ function highlightSelection(county){
 						//console.log(selected);
 						highlightSelection(results.data[i][0]);
 					
-=======
->>>>>>> DataDisplayPerCounty
+				}
+				else{
+
+					highlightSelection(e.target.feature.properties.NAME);
+					selected[0]=e.target.feature.properties.NAME;
+					console.log(selected);
+					$( ".tBody" ).empty();
+					tableParser(selected[0]);
+					//console.log(e.target.feature.properties.NAME);
 				}
 			}
 						
 		}
-<<<<<<< HEAD
-=======
 
-		else{
-
-			highlightSelection(e.target.feature.properties.NAME);
-			selected[0]=e.target.feature.properties.NAME;
-			console.log(selected);
-			$( ".tBody" ).empty();
-			tableParser(selected[0]);
-			//console.log(e.target.feature.properties.NAME);
 
 
 
@@ -593,7 +574,7 @@ function highlightSelection(county){
 			// 	{
 					
 			// 	}
-			 }	
+			
 
 		//$( ".tBody" ).empty();
 		//tableParser(e.target.feature.properties.NAME);
@@ -622,7 +603,6 @@ function highlightSelection(county){
 		// {
 			
 		// }
->>>>>>> DataDisplayPerCounty
 	}
 
 })
