@@ -177,11 +177,8 @@ function highlightSelection(county){
 		layer.on({
 				mouseover: highlight,
 				mouseout: resetHighlight,
-<<<<<<< HEAD
-				dblclick: display
-=======
+				dblclick: display,
 				click: updateTable
->>>>>>> DataDisplayPerCounty
 		});
 	}
 
