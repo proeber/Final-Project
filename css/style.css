@@ -16,6 +16,16 @@ h2,div, span {
 	user-select: none;
 }
 
+.page-header{
+	text-align: center;
+}
+
+.data
+{
+	height: 80vh;
+	overflow: auto;
+}
+
 .page-header
 {
 	text-align: center;

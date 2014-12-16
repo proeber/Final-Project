@@ -12,7 +12,7 @@ $(document).ready(function()
 		var yearsTable;
 		var selectedData =[];
 		var type;
-
+		var year;
 
 		screenHeight = screen.height;
 
@@ -75,12 +75,27 @@ $(document).ready(function()
 			
 			$('#county_chosen').find('.chosen-single').each(function(){
 			county = $(this).find('span').text();
+						highlightSelection(county);
+			selected[0] = county.trim();
 			})
 			$('#type_chosen').find('.chosen-single').each(function(){
-			type = $(this).find('span').text();
+				type = $(this).find('span').text();
+				if(type !=null){
+							// Formatting the data type string correctly
+					var correctedType = dataFormat(type);
+					// This goes to the function at line 111 to parse the csv data using the user input
+					parser(correctedType);
+				}
+			});
+			$('#year_chosen').find('.chosen-single').each(function(){
+				year =$(this).find('span').text();
+				parser("year");
 			});
 			
 			//console.log(county);
+
+			// Insert code that has to do with data here
+
 			// Formatting the data type string correctly
 			var correctedType = dataFormat(type);
 			// This goes to the function at line 111 to parse the csv data using the user input
@@ -222,8 +237,15 @@ function highlightSelection(county){
 			download: true,
 			delimiter: ',',
 			complete: function(results) {
+				console.log(path ,results);
+				if(type=="year"){
+					processTable(results);
+				}
+				else{
+						updateDropdown(results.data[0], results.data);
+				}
 			//	console.log(results);
-				updateDropdown(results.data[0], results.data);
+				//updateDropdown(results.data[0], results.data);
 				//console.log(results);
 			}
 		})
@@ -266,10 +288,54 @@ function highlightSelection(county){
 
 					//console.log(j);
 					results.name = nameArray[j];
-					console.log(nameArray[j]);
+					//console.log(nameArray[j]);
 					test.push(results);
 					//console.log(test[0]);
-					console.log(test);
+					//console.log(test[0]);
+					if(test.length == 101)
+					{
+						//console.log(test);
+						// Going through every file
+						for(var a = 0; a < test.length; a++)
+						{
+							//console.log(test[a].data[0].length);
+							var year = test[a].data[0];
+							//console.log(test[a]);
+							// X
+							var typeLength = year.length;
+							for(var b = 1; b < test[a].data.length; b++)
+							{
+								// Y
+								//console.log(typeLength);
+								for(var c = 1; c < typeLength; c++)
+								{
+									//console.log(test[a].data[b]);
+									if(test[a].data[b][c] == "TRUE")
+									{
+										//console.log("TRUEEEEE");
+										//console.log(test[a].name);
+										//console.log(test[a].data[0][c]);
+										//console.log(test[a].data[b][0]);
+										//
+										//console.log(typeof test[a].data[b][0]);
+										if(countyName == test[a].data[b][0].trim())
+										{
+											$(".tBody").append("<tr><td>"+test[a].data[b][0]+"</td><td>"+test[a].name+"</td><td>"+test[a].data[0][c]+"</td><td>"+
+												"<a href=\"http://geography.wisc.edu/maplib/requestForm.php\" target=\"_blank\">request</a>"+"</td></tr>");
+										}
+									}
+								}
+							}
+						}
+					}
+					// for(var a = 0; a < 101; a++)
+					// {
+						//console.log(test.length);
+						// for(var b = 0; b < test[a].length; b++)
+						// {
+						// 	console.log(test[a].data);
+						// }
+					//}
 					//console.log(i);
 					//i = 101;
 					j++;
@@ -323,7 +389,7 @@ function highlightSelection(county){
 	// Updating the dropdown menus with the correct data from the csv files
 	function updateDropdown(years, data)
 	{
-
+		console.log(years,data);
 		var yr =[];
 		var place = 0;
 		var counter= -1;
@@ -337,6 +403,7 @@ function highlightSelection(county){
 			bool = false;
 			for(k = 0; k < data[j].length; k++)
 			{
+				console.log(data[j][k]);
 				if(data[j][k] == "TRUE" && bool == false)
 				{
 					// Setting boolean to true when found TRUE in current row
@@ -422,7 +489,8 @@ function highlightSelection(county){
 				// console.log(selectedData[index].length);
 				for(var i=0;i<selectedData[index].length;i++){
 					//console.log(selected[index], " ",selectedData[index][i]);
-					$(".tBody").append("<tr><td>"+selected[index]+"</td><td>"+type+"</td><td>"+selectedData[index][i]+"</td><td>"+"request"+"</td></tr>");
+					$(".tBody").append("<tr><td>"+selected[index]+"</td><td>"+type+"</td><td>"+selectedData[index][i]+"</td><td>"+
+						"<a href=\"http://geography.wisc.edu/maplib/requestForm.php\">request</a>"+"</td></tr>");
 				}
 			}
 						
@@ -493,4 +561,93 @@ function highlightSelection(county){
 			
 		// }
 	}
+	// Goes through the year
+	function processTable(results){
+
+		var index =-1;
+		//console.log(results);
+
+
+
+		for(var i =0;i<results.data.length;i++){
+			for(var j =0;j<results.data[i].length;j++){
+				if(results.data[i][j] =='TRUE' && year == results.data[0][j]){
+
+						index++;
+						selected[index]= results.data[i][0].trim();
+						//console.log(selected);
+						highlightSelection(results.data[i][0]);
+					
+				}
+				else{
+
+					highlightSelection(e.target.feature.properties.NAME);
+					selected[0]=e.target.feature.properties.NAME;
+					console.log(selected);
+					$( ".tBody" ).empty();
+					tableParser(selected[0]);
+					//console.log(e.target.feature.properties.NAME);
+				}
+			}
+						
+		}
+
+
+
+
+			// 	for(j = 0; j < dataTable.length; j++)
+			// 	{
+			// 		bool = false;
+			// 		for(k = 0; k < dataTable[j].length; k++)
+			// 		{
+			// 			if(dataTable[j][k] == "TRUE" && bool == false)
+			// 			{
+			// 				// Setting boolean to true when found TRUE in current row
+			// 				bool = true;
+
+			// 				//console.log(data[j][0]);
+
+			// 				index +=1;
+			// 				//call the highlight option for a selection from the dropdowns
+			// 				selected[index] = dataTable[j][0].trim();
+			// 				highlightSelection(dataTable[j][0]);
+			// 			}
+			// 		}
+			// 	}
+			// 	console.log(yearsTable + " " + dataTable);
+			// 	for(i = 1; i < yearsTable.length; i++)
+			// 	{
+					
+			// 	}
+			
+
+		//$( ".tBody" ).empty();
+		//tableParser(e.target.feature.properties.NAME);
+		//console.log(e.target.feature.properties.NAME);
+		// for(j = 0; j < dataTable.length; j++)
+		// {
+		// 	bool = false;
+		// 	for(k = 0; k < dataTable[j].length; k++)
+		// 	{
+		// 		if(dataTable[j][k] == "TRUE" && bool == false)
+		// 		{
+		// 			// Setting boolean to true when found TRUE in current row
+		// 			bool = true;
+
+		// 			//console.log(data[j][0]);
+
+		// 			index +=1;
+		// 			//call the highlight option for a selection from the dropdowns
+		// 			selected[index] = dataTable[j][0].trim();
+		// 			highlightSelection(dataTable[j][0]);
+		// 		}
+		// 	}
+		// }
+		// console.log(yearsTable + " " + dataTable);
+		// for(i = 1; i < yearsTable.length; i++)
+		// {
+			
+		// }
+	}
+
 })
