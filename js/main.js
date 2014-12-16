@@ -10,6 +10,9 @@ $(document).ready(function()
 		var layerTarget;
 		var dataTable;
 		var yearsTable;
+		var selectedData =[];
+		var type;
+
 
 		screenHeight = screen.height;
 
@@ -69,7 +72,7 @@ $(document).ready(function()
 			select = true;
 			//Storing the input values
 			var county;
-			var type;
+			
 			$('#county_chosen').find('.chosen-single').each(function(){
 			county = $(this).find('span').text();
 			})
@@ -219,9 +222,9 @@ function highlightSelection(county){
 			download: true,
 			delimiter: ',',
 			complete: function(results) {
-				console.log(results);
+			//	console.log(results);
 				updateDropdown(results.data[0], results.data);
-				console.log(results);
+				//console.log(results);
 			}
 		})
 	}
@@ -251,7 +254,7 @@ function highlightSelection(county){
 			typeArray[i] = "/data/csv/" + typeArray[i] + ".csv";
 			//console.log(typeArray[i]);
 			//console.log(path);
-				console.log(typeArray[i]);
+				//console.log(typeArray[i]);
 
 			Papa.parse(typeArray[i], {
 			download: true,
@@ -312,6 +315,11 @@ function highlightSelection(county){
 	// Updating the dropdown menus with the correct data from the csv files
 	function updateDropdown(years, data)
 	{
+
+		var yr =[];
+		var counter =-1;
+		var place = 0;
+
 		var bool = false;
 		var first =false;
 		var index =-1;
@@ -340,10 +348,20 @@ function highlightSelection(county){
 					//call the highlight option for a selection from the dropdowns
 					selected[index] = data[j][0].trim();
 					highlightSelection(data[j][0]);
-		
+					
 				}
+				
 			}
+
+				counter =-1;
+				// console.log("out of loop",yr);
+				// selectedData[place]=yr;
+				// yr = null;
+				// yr=[];
+				// console.log(selectedData, "outside of second loop");
 		}
+
+		index =0;
 
 		var option = '';
 		for (i = 0; i < years.length; i++){
@@ -352,36 +370,86 @@ function highlightSelection(county){
 		}
 		$('#year').append(option);
 		$('#year').trigger('chosen:updated');
+
+		// console.log(selected);
+		// console.log(selectedData);
+
+
+		//creates a selected data array
+		for(var a =0;a <data.length;a++){
+			for(var b =0; b<data[a].length;b++){
+				if(data[a][b] == "TRUE"){
+
+					counter++;
+					yr[counter] = data[0][b];//create an array that is the years
+				}
+	
+			}
+		
+			if(yr.length>0){
+				counter=-1;
+				selectedData[index]=yr;
+				index++;
+				yr=[];
+			}
+		
+		}
+
+
+
+
 	}
 
 	function updateTable(e)
 	{
-		$( ".tBody" ).empty();
-		tableParser(e.target.feature.properties.NAME);
-		//console.log(e.target.feature.properties.NAME);
-		for(j = 0; j < dataTable.length; j++)
-		{
-			bool = false;
-			for(k = 0; k < dataTable[j].length; k++)
-			{
-				if(dataTable[j][k] == "TRUE" && bool == false)
-				{
-					// Setting boolean to true when found TRUE in current row
-					bool = true;
+		var index;
 
-					//console.log(data[j][0]);
+		console.log(e.target);
 
-					index +=1;
-					//call the highlight option for a selection from the dropdowns
-					selected[index] = dataTable[j][0].trim();
-					highlightSelection(dataTable[j][0]);
+		if(select){
+			console.log(selected.indexOf(e.target.feature.properties.NAME));
+			if(selected.indexOf(e.target.feature.properties.NAME.trim())>-1){
+				index = selected.indexOf(e.target.feature.properties.NAME);
+				for(var i=0;i<selectedData[index].length;i++){
+					console.log(selected[index], " ",selectedData[index][i]);
 				}
 			}
+						
 		}
-		console.log(yearsTable + " " + dataTable);
-		for(i = 1; i < yearsTable.length; i++)
-		{
-			
-		}
+
+		else{
+
+
+			$( ".tBody" ).empty();
+			tableParser(e.target.feature.properties.NAME);
+			//console.log(e.target.feature.properties.NAME);
+
+
+
+				for(j = 0; j < dataTable.length; j++)
+				{
+					bool = false;
+					for(k = 0; k < dataTable[j].length; k++)
+					{
+						if(dataTable[j][k] == "TRUE" && bool == false)
+						{
+							// Setting boolean to true when found TRUE in current row
+							bool = true;
+
+							//console.log(data[j][0]);
+
+							index +=1;
+							//call the highlight option for a selection from the dropdowns
+							selected[index] = dataTable[j][0].trim();
+							highlightSelection(dataTable[j][0]);
+						}
+					}
+				}
+				console.log(yearsTable + " " + dataTable);
+				for(i = 1; i < yearsTable.length; i++)
+				{
+					
+				}
+			}	
 	}
 })
