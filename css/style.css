@@ -20,6 +20,12 @@ h2,div, span {
 	text-align: center;
 }
 
+.data
+{
+	height: 80vh;
+	overflow: auto;
+}
+
 .page-header
 {
 	text-align: center;

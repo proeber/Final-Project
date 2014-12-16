@@ -245,7 +245,7 @@ function highlightSelection(county){
 						updateDropdown(results.data[0], results.data);
 				}
 			//	console.log(results);
-				updateDropdown(results.data[0], results.data);
+				//updateDropdown(results.data[0], results.data);
 				//console.log(results);
 			}
 		})
@@ -288,10 +288,54 @@ function highlightSelection(county){
 
 					//console.log(j);
 					results.name = nameArray[j];
-					console.log(nameArray[j]);
+					//console.log(nameArray[j]);
 					test.push(results);
 					//console.log(test[0]);
-					console.log(test);
+					//console.log(test[0]);
+					if(test.length == 101)
+					{
+						//console.log(test);
+						// Going through every file
+						for(var a = 0; a < test.length; a++)
+						{
+							//console.log(test[a].data[0].length);
+							var year = test[a].data[0];
+							//console.log(test[a]);
+							// X
+							var typeLength = year.length;
+							for(var b = 1; b < test[a].data.length; b++)
+							{
+								// Y
+								//console.log(typeLength);
+								for(var c = 1; c < typeLength; c++)
+								{
+									//console.log(test[a].data[b]);
+									if(test[a].data[b][c] == "TRUE")
+									{
+										//console.log("TRUEEEEE");
+										//console.log(test[a].name);
+										//console.log(test[a].data[0][c]);
+										//console.log(test[a].data[b][0]);
+										//
+										//console.log(typeof test[a].data[b][0]);
+										if(countyName == test[a].data[b][0].trim())
+										{
+											$(".tBody").append("<tr><td>"+test[a].data[b][0]+"</td><td>"+test[a].name+"</td><td>"+test[a].data[0][c]+"</td><td>"+
+												"<a href=\"http://geography.wisc.edu/maplib/requestForm.php\" target=\"_blank\">request</a>"+"</td></tr>");
+										}
+									}
+								}
+							}
+						}
+					}
+					// for(var a = 0; a < 101; a++)
+					// {
+						//console.log(test.length);
+						// for(var b = 0; b < test[a].length; b++)
+						// {
+						// 	console.log(test[a].data);
+						// }
+					//}
 					//console.log(i);
 					//i = 101;
 					j++;
@@ -445,7 +489,8 @@ function highlightSelection(county){
 				// console.log(selectedData[index].length);
 				for(var i=0;i<selectedData[index].length;i++){
 					//console.log(selected[index], " ",selectedData[index][i]);
-					$(".tBody").append("<tr><td>"+selected[index]+"</td><td>"+type+"</td><td>"+selectedData[index][i]+"</td><td>"+"request"+"</td></tr>");
+					$(".tBody").append("<tr><td>"+selected[index]+"</td><td>"+type+"</td><td>"+selectedData[index][i]+"</td><td>"+
+						"<a href=\"http://geography.wisc.edu/maplib/requestForm.php\">request</a>"+"</td></tr>");
 				}
 			}
 						
@@ -516,7 +561,7 @@ function highlightSelection(county){
 			
 		// }
 	}
-
+	// Goes through the year
 	function processTable(results){
 
 		var index =-1;
