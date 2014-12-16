@@ -15,18 +15,16 @@ h2,div, span {
 	-ms-user-select: none;
 	user-select: none;
 }
-<<<<<<< HEAD
+
 .page-header{
 	text-align: center;
 }
-=======
 
 .page-header
 {
 	text-align: center;
 }
 
->>>>>>> DataDisplayPerCounty
 #search
 {
 	width:20%;
