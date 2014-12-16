@@ -285,19 +285,19 @@ function highlightSelection(county){
 			delimiter: ',',
 			complete: function(results)
 			{
-
 					//console.log(j);
 					results.name = nameArray[j];
 					//console.log(nameArray[j]);
 					test.push(results);
 					//console.log(test[0]);
 					//console.log(test[0]);
-					if(test.length == 101)
+					if(test.length == 100)
 					{
 						//console.log(test);
 						// Going through every file
 						for(var a = 0; a < test.length; a++)
 						{
+
 							//console.log(test[a].data[0].length);
 							var year = test[a].data[0];
 							//console.log(test[a]);
@@ -312,7 +312,7 @@ function highlightSelection(county){
 									//console.log(test[a].data[b]);
 									if(test[a].data[b][c] == "TRUE")
 									{
-										//console.log("TRUEEEEE");
+										console.log("TRUEEEEE");
 										//console.log(test[a].name);
 										//console.log(test[a].data[0][c]);
 										//console.log(test[a].data[b][0]);
