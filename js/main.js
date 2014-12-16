@@ -259,57 +259,37 @@ function highlightSelection(county){
 		});
 
 		//console.log(typeArray);
-
+		var test = [];
 		var n = 0;
-		for(var i = 1; i < length; i++)
+		var i = 0;
+		var j = 1;
+		for(i = 1; i < length; i++)
 		{
 			nameArray[i] = typeArray[i];
+			//console.log(nameArray[i]);
 			//Saving all the file names
 			typeArray[i] = dataFormat(typeArray[i]);
 			typeArray[i] = "/data/csv/" + typeArray[i] + ".csv";
-
-
+			//console.log(i);
+		
+			//console.log(nameArray[i]);
 			Papa.parse(typeArray[i], {
 			download: true,
 			delimiter: ',',
 			complete: function(results)
 			{
-				var year = results.data[0];
-				var data = results.data;
-				var countyName = countyName;
-				var name = nameArray;
-				var type = typeArray;
-				console.log("tessst");
-				var inCSVType, inCSVYear;
-				// Looking for the current county in our csv
-				// console.log(data.length);
-				for(i = 1; i < data.length; i++)
-				{
-					if(countyName == data[i][0].trim())
-					{
-						console.log("tttttt");
-						// When found, look through the row
-						for(k = 1; k < year.length; k++)
-						{
-							//console.log(k);
-							// Look for true throughout that csv
-							console.log(countyName + " " + data[i][0].trim());
 
-							if(data[i][k] == "TRUE")
-							{
-								//console.log("TRUE MF");
-								inCSVType = name[k];
-								// Save the year at which we have the year
-								inCSVYear = year[k];
-								console.log(inCSVYear + " " + inCSVType);
-							}
-						}	
-					}
-				}
-				n++;
-				//tableResults(results.data[0], results.data, countyName, nameArray, typeArray);
-				//console.log(nameArray);
-				//}
+					//console.log(j);
+					results.name = nameArray[j];
+					console.log(nameArray[j]);
+					test.push(results);
+					//console.log(test[0]);
+					console.log(test);
+					//console.log(i);
+					//i = 101;
+					j++;
+				
+
 			}
 			});
 		}
@@ -470,36 +450,36 @@ function highlightSelection(county){
 			selected[0]=e.target.feature.properties.NAME;
 			console.log(selected);
 			$( ".tBody" ).empty();
-			tableParser(e.target.feature.properties.NAME);
+			tableParser(selected[0]);
 			//console.log(e.target.feature.properties.NAME);
 
 
 
-				for(j = 0; j < dataTable.length; j++)
-				{
-					bool = false;
-					for(k = 0; k < dataTable[j].length; k++)
-					{
-						if(dataTable[j][k] == "TRUE" && bool == false)
-						{
-							// Setting boolean to true when found TRUE in current row
-							bool = true;
+			// 	for(j = 0; j < dataTable.length; j++)
+			// 	{
+			// 		bool = false;
+			// 		for(k = 0; k < dataTable[j].length; k++)
+			// 		{
+			// 			if(dataTable[j][k] == "TRUE" && bool == false)
+			// 			{
+			// 				// Setting boolean to true when found TRUE in current row
+			// 				bool = true;
 
-							//console.log(data[j][0]);
+			// 				//console.log(data[j][0]);
 
-							index +=1;
-							//call the highlight option for a selection from the dropdowns
-							selected[index] = dataTable[j][0].trim();
-							highlightSelection(dataTable[j][0]);
-						}
-					}
-				}
-				console.log(yearsTable + " " + dataTable);
-				for(i = 1; i < yearsTable.length; i++)
-				{
+			// 				index +=1;
+			// 				//call the highlight option for a selection from the dropdowns
+			// 				selected[index] = dataTable[j][0].trim();
+			// 				highlightSelection(dataTable[j][0]);
+			// 			}
+			// 		}
+			// 	}
+			// 	console.log(yearsTable + " " + dataTable);
+			// 	for(i = 1; i < yearsTable.length; i++)
+			// 	{
 					
-				}
-			}	
+			// 	}
+			 }	
 
 		//$( ".tBody" ).empty();
 		//tableParser(e.target.feature.properties.NAME);
