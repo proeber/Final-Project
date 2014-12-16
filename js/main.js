@@ -12,6 +12,7 @@ $(document).ready(function()
 		var yearsTable;
 		var selectedData =[];
 		var type;
+		var year;
 
 
 		screenHeight = screen.height;
@@ -75,19 +76,27 @@ $(document).ready(function()
 			
 			$('#county_chosen').find('.chosen-single').each(function(){
 			county = $(this).find('span').text();
+						highlightSelection(county);
+			selected[0] = county.trim();
 			})
 			$('#type_chosen').find('.chosen-single').each(function(){
-			type = $(this).find('span').text();
+				type = $(this).find('span').text();
+				if(type !=null){
+							// Formatting the data type string correctly
+					var correctedType = dataFormat(type);
+					// This goes to the function at line 111 to parse the csv data using the user input
+					parser(correctedType);
+				}
+			});
+			$('#year_chosen').find('.chosen-single').each(function(){
+				year =$(this).find('span').text();
+				parser("year");
 			});
 			
 			//console.log(county);
-			// Formatting the data type string correctly
-			var correctedType = dataFormat(type);
-			// This goes to the function at line 111 to parse the csv data using the user input
-			parser(correctedType);
+
 			// Insert code that has to do with data here
-			highlightSelection(county);
-			selected[0] = county.trim();
+
 
 		});
 	});
@@ -222,8 +231,14 @@ function highlightSelection(county){
 			download: true,
 			delimiter: ',',
 			complete: function(results) {
-			//	console.log(results);
-				updateDropdown(results.data[0], results.data);
+				console.log(path ,results);
+				if(type=="year"){
+					processTable(results);
+				}
+				else{
+						updateDropdown(results.data[0], results.data);
+				}
+			
 				//console.log(results);
 			}
 		})
@@ -343,7 +358,7 @@ function highlightSelection(county){
 	// Updating the dropdown menus with the correct data from the csv files
 	function updateDropdown(years, data)
 	{
-
+		console.log(years,data);
 		var yr =[];
 		var place = 0;
 		var counter= -1;
@@ -513,4 +528,23 @@ function highlightSelection(county){
 			
 		// }
 	}
+
+	function processTable(results){
+		console.log("start processTable");
+		var index =-1
+
+		for(var i =0;i<results.length;i++){
+			for(var j =0;j<results[i].length;j++){
+
+				if(results[i][j] =='TRUE'){
+
+					index++;
+					selected[index]= results[i][0];
+					console.log(selected);
+					highlightSelection(selected);
+				}
+			}
+		}
+	}
+
 })
