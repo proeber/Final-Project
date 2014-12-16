@@ -229,8 +229,8 @@ function highlightSelection(county){
 
 	function tableParser(countyName)
 	{
+		// 122 length
 		var length = $('#type').children('option').length;
-		//console.log(length);
 
 		var typeArray = [];
 		var nameArray = [];
@@ -253,32 +253,31 @@ function highlightSelection(county){
 			//console.log(typeArray[i]);
 			//console.log(path);
 
-//
 			Papa.parse(typeArray[i], {
 			download: true,
 			delimiter: ',',
 			complete: function(results)
 			{
-				console.log(nameArray);
-				for(var j = 1; j < length; j++)
-				{
+				console.log(typeArray[i]);
+				// for(var j = 1; j < length; j++)
+				// {
+					//console.log(results.data[0]);
 					
-					tableResults(results.data[0], results.data, countyName, nameArray[j]);
-				}
+					tableResults(results.data[0], results.data, countyName, nameArray, typeArray);
+					//console.log(nameArray);
+				//}
 			}
 			});
 		}
 	}
 
-	function tableResults(year, data, countyName, name)
+	function tableResults(year, data, countyName, name, type)
 	{
 		var inCSVType, inCSVYear;
-		var bool = false;
 		// Looking for the current county in our csv
 		// console.log(data.length);
 		for(i = 1; i < data.length; i++)
 		{
-			console.log(name);
 			if(countyName == data[i][0].trim())
 			{
 				// When found, look through the row
@@ -287,11 +286,13 @@ function highlightSelection(county){
 					// Look for true throughout that csv
 					if(data[i][k] == "TRUE")
 					{
+						console.log(type[i]);
+						//console.log(countyName + " " + data[i][0].trim());
 						//console.log("TRUE MF");
-						inCSVType = name;
+						inCSVType = name[k];
 						// Save the year at which we have the year
 						inCSVYear = year[k];
-						console.log(inCSVYear + " " + inCSVType);
+						//console.log(inCSVYear + " " + inCSVType);
 					}
 				}	
 			}
@@ -356,7 +357,7 @@ function highlightSelection(county){
 	{
 		$( ".tBody" ).empty();
 		tableParser(e.target.feature.properties.NAME);
-		console.log(e.target.feature.properties.NAME);
+		//console.log(e.target.feature.properties.NAME);
 		for(j = 0; j < dataTable.length; j++)
 		{
 			bool = false;
