@@ -233,13 +233,10 @@ function highlightSelection(county){
 				else{
 						updateDropdown(results.data[0], results.data);
 				}
-<<<<<<< HEAD
+
 			//	console.log(results);
 				//updateDropdown(results.data[0], results.data);
 				//console.log(results);
-=======
-
->>>>>>> FETCH_HEAD
 			}
 		})
 	}
