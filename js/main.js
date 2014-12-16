@@ -372,6 +372,7 @@ function highlightSelection(county){
 			bool = false;
 			for(k = 0; k < data[j].length; k++)
 			{
+				console.log(data[j][k]);
 				if(data[j][k] == "TRUE" && bool == false)
 				{
 					// Setting boolean to true when found TRUE in current row
@@ -530,18 +531,21 @@ function highlightSelection(county){
 	}
 
 	function processTable(results){
-		console.log("start processTable");
-		var index =-1
 
-		for(var i =0;i<results.length;i++){
-			for(var j =0;j<results[i].length;j++){
+		var index =-1;
+		//console.log(results);
 
-				if(results[i][j] =='TRUE'){
 
-					index++;
-					selected[index]= results[i][0];
-					console.log(selected);
-					highlightSelection(selected);
+
+		for(var i =0;i<results.data.length;i++){
+			for(var j =0;j<results.data[i].length;j++){
+				if(results.data[i][j] =='TRUE' && year == results.data[0][j]){
+
+						index++;
+						selected[index]= results.data[i][0].trim();
+						//console.log(selected);
+						highlightSelection(results.data[i][0]);
+					
 				}
 			}
 		}
