@@ -1,14 +1,15 @@
 $(document).ready(function()
 {
+
 		//global variables
-		var map,
-		tiles,
-		choropleth;
+		var map, tiles, choropleth;
 		var counties = [];
 		var screenHeight;
 		var selected =[];
 		var select = false;
 		var layerTarget;
+		var dataTable;
+		var yearsTable;
 
 		screenHeight = screen.height;
 
@@ -17,7 +18,6 @@ $(document).ready(function()
 	$(".chosen-select").chosen();
 	//Initializing the table
 	$('#dataTable').tablesorter();
-	
 
 	$("#reset").click(function(){
 		history.go(0);
@@ -177,12 +177,12 @@ function highlightSelection(county){
 		layer.on({
 				mouseover: highlight,
 				mouseout: resetHighlight,
+<<<<<<< HEAD
 				dblclick: display
+=======
+				click: updateTable
+>>>>>>> DataDisplayPerCounty
 		});
-		layer.on("click", function(e)
-		{
-			updateTable();
-		})
 	}
 
 	function style(feature){
@@ -215,17 +215,91 @@ function highlightSelection(county){
 	function parser(type)
 	{
 		// Getting the file type 
-		var file = type + ".csv"
+		var file = type + ".csv";
 		var path = "/data/csv/" + file;
 		
 		Papa.parse(path, {
 			download: true,
 			delimiter: ',',
 			complete: function(results) {
+				console.log(results);
 				updateDropdown(results.data[0], results.data);
 				console.log(results);
 			}
 		})
+	}
+
+	function tableParser(countyName)
+	{
+		// 122 length
+		var length = $('#type').children('option').length;
+
+		var typeArray = [];
+		var nameArray = [];
+
+		$("#type option").each(function()
+		{
+			typeArray.push($(this).val());
+			//console.log(typeArray);
+		});
+
+		//console.log(typeArray);
+
+		
+		for(var i = 1; i < length; i++)
+		{
+			nameArray[i] = typeArray[i];
+			//Saving all the file names
+			typeArray[i] = dataFormat(typeArray[i]);
+			typeArray[i] = "/data/csv/" + typeArray[i] + ".csv";
+			//console.log(typeArray[i]);
+			//console.log(path);
+				console.log(typeArray[i]);
+
+			Papa.parse(typeArray[i], {
+			download: true,
+			delimiter: ',',
+			complete: function(results)
+			{
+				// for(var j = 1; j < length; j++)
+				// {
+					//console.log(results.data[0]);
+					
+					tableResults(results.data[0], results.data, countyName, nameArray, typeArray);
+					//console.log(nameArray);
+				//}
+			}
+			});
+		}
+	}
+
+	function tableResults(year, data, countyName, name, type)
+	{
+		var inCSVType, inCSVYear;
+		// Looking for the current county in our csv
+		// console.log(data.length);
+		for(i = 1; i < data.length; i++)
+		{
+			if(countyName == data[i][0].trim())
+			{
+				// When found, look through the row
+				for(k = 1; k < year.length; k++)
+				{
+					// Look for true throughout that csv
+					if(data[i][k] == "TRUE")
+					{
+						console.log(type[i]);
+						//console.log(countyName + " " + data[i][0].trim());
+						//console.log("TRUE MF");
+						inCSVType = name[k];
+						// Save the year at which we have the year
+						inCSVYear = year[k];
+						//console.log(inCSVYear + " " + inCSVType);
+					}
+				}	
+			}
+		}
+		//console.log("DONE");
 	}
 
 	// Format the data type string name
@@ -273,23 +347,44 @@ function highlightSelection(county){
 				}
 			}
 		}
+
 		var option = '';
 		for (i = 0; i < years.length; i++){
 			 option += '<option value="'+ years[i] + '">' + years[i] + '</option>';
+			 yearsTable = years[i];
 		}
 		$('#year').append(option);
 		$('#year').trigger('chosen:updated');
 	}
 
-	function updateTable(years, data)
+	function updateTable(e)
 	{
-		layerTarget.on('click', function(e)
+		$( ".tBody" ).empty();
+		tableParser(e.target.feature.properties.NAME);
+		//console.log(e.target.feature.properties.NAME);
+		for(j = 0; j < dataTable.length; j++)
 		{
-			$( ".tBody" ).empty();
-			for(i = 1; i < years.length; i++)
+			bool = false;
+			for(k = 0; k < dataTable[j].length; k++)
 			{
-				
+				if(dataTable[j][k] == "TRUE" && bool == false)
+				{
+					// Setting boolean to true when found TRUE in current row
+					bool = true;
+
+					//console.log(data[j][0]);
+
+					index +=1;
+					//call the highlight option for a selection from the dropdowns
+					selected[index] = dataTable[j][0].trim();
+					highlightSelection(dataTable[j][0]);
+				}
 			}
-		});
+		}
+		console.log(yearsTable + " " + dataTable);
+		for(i = 1; i < yearsTable.length; i++)
+		{
+			
+		}
 	}
 })
